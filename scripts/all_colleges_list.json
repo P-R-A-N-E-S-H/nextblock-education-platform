@@ -1,0 +1,1694 @@
+[
+  {
+    "file": "tamilNaduColleges.ts",
+    "id": "anna-university-ceg",
+    "name": "College of Engineering, Guindy (CEG Anna University)",
+    "shortName": "CEG Anna Univ",
+    "city": "Guindy, Chennai",
+    "district": "Chennai",
+    "currentImage": "/colleges/ceg-guindy.jpg"
+  },
+  {
+    "file": "tamilNaduColleges.ts",
+    "id": "mit-anna-univ",
+    "name": "Madras Institute of Technology (MIT Campus, Anna University)",
+    "shortName": "MIT Chromepet",
+    "city": "Chromepet, Chennai",
+    "district": "Chennai",
+    "currentImage": "/colleges/mit-chromepet.jpg"
+  },
+  {
+    "file": "tamilNaduColleges.ts",
+    "id": "gct-coimbatore",
+    "name": "Government College of Technology, Coimbatore (GCT)",
+    "shortName": "GCT Coimbatore",
+    "city": "Thadagam Road, Coimbatore",
+    "district": "Coimbatore",
+    "currentImage": "/colleges/gct.jpg"
+  },
+  {
+    "file": "tamilNaduColleges.ts",
+    "id": "alagappa-acet-karaikudi",
+    "name": "Alagappa Chettiar Government College of Engineering and Technology (ACGCET Karaikudi)",
+    "shortName": "Alagappa ACGCET",
+    "city": "Karaikudi",
+    "district": "Sivaganga",
+    "currentImage": "https://images.unsplash.com/photo-1569098644584-210bcd375b59?auto=format&fit=crop&w=900&q=80"
+  },
+  {
+    "file": "tamilNaduColleges.ts",
+    "id": "amrita-coimbatore",
+    "name": "Amrita Vishwa Vidyapeetham",
+    "shortName": "Amrita University",
+    "city": "Ettimadai, Coimbatore",
+    "district": "Coimbatore",
+    "currentImage": "https://images.unsplash.com/photo-1541829070764-84a7d30dd3f3?auto=format&fit=crop&w=900&q=80"
+  },
+  {
+    "file": "tamilNaduColleges.ts",
+    "id": "vit-vellore",
+    "name": "Vellore Institute of Technology (VIT)",
+    "shortName": "VIT Vellore / Chennai",
+    "city": "Katpadi, Vellore",
+    "district": "Vellore",
+    "currentImage": "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=900&q=80"
+  },
+  {
+    "file": "tamilNaduColleges.ts",
+    "id": "srm-ist-chennai",
+    "name": "SRM Institute of Science and Technology",
+    "shortName": "SRM IST Kattankulathur",
+    "city": "Kattankulathur, Chennai",
+    "district": "Chengalpattu",
+    "currentImage": "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=900&q=80"
+  },
+  {
+    "file": "tamilNaduColleges.ts",
+    "id": "sastra-deemed-thanjavur",
+    "name": "Shanmugha Arts, Science, Technology & Research Academy (SASTRA)",
+    "shortName": "SASTRA Deemed Univ",
+    "city": "Thirumalaisamudram, Thanjavur",
+    "district": "Thanjavur",
+    "currentImage": "https://images.unsplash.com/photo-1569098644584-210bcd375b59?auto=format&fit=crop&w=900&q=80"
+  },
+  {
+    "file": "tamilNaduColleges.ts",
+    "id": "karunya-university-cbe",
+    "name": "Karunya Institute of Technology and Sciences",
+    "shortName": "Karunya Deemed Univ",
+    "city": "Siruvani, Coimbatore",
+    "district": "Coimbatore",
+    "currentImage": "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=900&q=80"
+  },
+  {
+    "file": "tamilNaduColleges.ts",
+    "id": "psg-college-of-technology",
+    "name": "PSG College of Technology (PSG Tech)",
+    "shortName": "PSG Tech Peelamedu",
+    "city": "Peelamedu, Coimbatore",
+    "district": "Coimbatore",
+    "currentImage": "/colleges/psg-tech.jpg"
+  },
+  {
+    "file": "tamilNaduColleges.ts",
+    "id": "coimbatore-institute-of-technology",
+    "name": "Coimbatore Institute of Technology (CIT Coimbatore)",
+    "shortName": "CIT Coimbatore",
+    "city": "Civil Aerodrome Post, Coimbatore",
+    "district": "Coimbatore",
+    "currentImage": "/colleges/cit.jpg"
+  },
+  {
+    "file": "tamilNaduColleges.ts",
+    "id": "kumaraguru-college-of-technology",
+    "name": "Kumaraguru College of Technology (KCT Coimbatore)",
+    "shortName": "KCT Saravanampatti",
+    "city": "Saravanampatti, Coimbatore",
+    "district": "Coimbatore",
+    "currentImage": "/colleges/kct.jpg"
+  },
+  {
+    "file": "tamilNaduColleges.ts",
+    "id": "kpr-institute-of-engg",
+    "name": "KPR Institute of Engineering and Technology (KPRIET)",
+    "shortName": "KPRIET Arasur",
+    "city": "Arasur, Coimbatore",
+    "district": "Coimbatore",
+    "currentImage": "/colleges/kpriet.jpg"
+  },
+  {
+    "file": "tamilNaduColleges.ts",
+    "id": "skcet-coimbatore",
+    "name": "Sri Krishna College of Engineering and Technology (SKCET)",
+    "shortName": "SKCET Kuniamuthur",
+    "city": "Kuniamuthur, Coimbatore",
+    "district": "Coimbatore",
+    "currentImage": "/colleges/skcet.jpg"
+  },
+  {
+    "file": "tamilNaduColleges.ts",
+    "id": "sri-eshwar-coimbatore",
+    "name": "Sri Eshwar College of Engineering (SECE)",
+    "shortName": "Sri Eshwar Kinathukadavu",
+    "city": "Kinathukadavu, Coimbatore",
+    "district": "Coimbatore",
+    "currentImage": "/colleges/sece.jpg"
+  },
+  {
+    "file": "tamilNaduColleges.ts",
+    "id": "srec-coimbatore",
+    "name": "Sri Ramakrishna Engineering College (SREC Vattamalaipalayam)",
+    "shortName": "SREC Coimbatore",
+    "city": "Vattamalaipalayam, Coimbatore",
+    "district": "Coimbatore",
+    "currentImage": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=900&q=80"
+  },
+  {
+    "file": "tamilNaduColleges.ts",
+    "id": "sns-college-of-technology",
+    "name": "SNS College of Technology (SNS Tech)",
+    "shortName": "SNS Tech Coimbatore",
+    "city": "Saravanampatti, Coimbatore",
+    "district": "Coimbatore",
+    "currentImage": "https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?auto=format&fit=crop&w=900&q=80"
+  },
+  {
+    "file": "tamilNaduColleges.ts",
+    "id": "hindusthan-college-of-engg",
+    "name": "Hindusthan College of Engineering and Technology (HICET)",
+    "shortName": "HICET Coimbatore",
+    "city": "Malumichampatti, Coimbatore",
+    "district": "Coimbatore",
+    "currentImage": "https://images.unsplash.com/photo-1541829070764-84a7d30dd3f3?auto=format&fit=crop&w=900&q=80"
+  },
+  {
+    "file": "tamilNaduColleges.ts",
+    "id": "karpagam-college-of-engg",
+    "name": "Karpagam College of Engineering (KCE)",
+    "shortName": "KCE Othakkalmandapam",
+    "city": "Othakkalmandapam, Coimbatore",
+    "district": "Coimbatore",
+    "currentImage": "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=900&q=80"
+  },
+  {
+    "file": "tamilNaduColleges.ts",
+    "id": "rathinam-technical-campus",
+    "name": "Rathinam Technical Campus (Rathinam Techzone)",
+    "shortName": "Rathinam Eachanari",
+    "city": "Eachanari, Coimbatore",
+    "district": "Coimbatore",
+    "currentImage": "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=900&q=80"
+  },
+  {
+    "file": "tamilNaduColleges.ts",
+    "id": "ssn-college-chennai",
+    "name": "Sri Sivasubramaniya Nadar (SSN) College of Engineering",
+    "shortName": "SSN College of Engg",
+    "city": "Kalavakkam, OMR, Chennai",
+    "district": "Chengalpattu",
+    "currentImage": "/colleges/ssn.jpg"
+  },
+  {
+    "file": "tamilNaduColleges.ts",
+    "id": "thiagarajar-college-of-engg",
+    "name": "Thiagarajar College of Engineering (TCE Madurai)",
+    "shortName": "TCE Madurai",
+    "city": "Thiruparankundram, Madurai",
+    "district": "Madurai",
+    "currentImage": "/colleges/tce-madurai.jpg"
+  },
+  {
+    "file": "tamilNaduColleges.ts",
+    "id": "kongu-engineering-college",
+    "name": "Kongu Engineering College (KEC Perundurai)",
+    "shortName": "KEC Erode",
+    "city": "Perundurai, Erode",
+    "district": "Erode",
+    "currentImage": "/colleges/kongu.jpg"
+  },
+  {
+    "file": "tamilNaduColleges.ts",
+    "id": "bannari-amman-institute",
+    "name": "Bannari Amman Institute of Technology (BIT Sathyamangalam)",
+    "shortName": "BIT Sathy",
+    "city": "Sathyamangalam, Erode",
+    "district": "Erode",
+    "currentImage": "/colleges/bit-sathy.jpg"
+  },
+  {
+    "file": "tamilNaduCollegesExtended.ts",
+    "id": "psg-itech-coimbatore",
+    "name": "PSG Institute of Technology and Applied Research (PSG iTech)",
+    "shortName": "PSG iTech Neelambur",
+    "city": "Neelambur, Coimbatore",
+    "district": "Coimbatore",
+    "currentImage": "https://images.unsplash.com/photo-1541829070764-84a7d30dd3f3?auto=format&fit=crop&w=1000&q=80"
+  },
+  {
+    "file": "tamilNaduCollegesExtended.ts",
+    "id": "skct-coimbatore",
+    "name": "Sri Krishna College of Technology (SKCT)",
+    "shortName": "SKCT Kovaipudur",
+    "city": "Kovaipudur, Coimbatore",
+    "district": "Coimbatore",
+    "currentImage": "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=1000&q=80"
+  },
+  {
+    "file": "tamilNaduCollegesExtended.ts",
+    "id": "dr-ngp-institute-of-tech",
+    "name": "Dr. N.G.P. Institute of Technology (Dr NGP iTech)",
+    "shortName": "Dr NGP iTech Kalapatti",
+    "city": "Kalapatti Road, Coimbatore",
+    "district": "Coimbatore",
+    "currentImage": "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1000&q=80"
+  },
+  {
+    "file": "tamilNaduCollegesExtended.ts",
+    "id": "srit-coimbatore",
+    "name": "Sri Ramakrishna Institute of Technology (SRIT Pachapalayam)",
+    "shortName": "SRIT Pachapalayam",
+    "city": "Pachapalayam, Perur Chettipalayam, Coimbatore",
+    "district": "Coimbatore",
+    "currentImage": "https://images.unsplash.com/photo-1569098644584-210bcd375b59?auto=format&fit=crop&w=1000&q=80"
+  },
+  {
+    "file": "tamilNaduCollegesExtended.ts",
+    "id": "sns-college-of-engineering",
+    "name": "SNS College of Engineering (SNSCE Kurumbapalayam)",
+    "shortName": "SNSCE Coimbatore",
+    "city": "Kurumbapalayam, Sathy Road, Coimbatore",
+    "district": "Coimbatore",
+    "currentImage": "https://images.unsplash.com/photo-1592280771190-3e2e4d571952?auto=format&fit=crop&w=1000&q=80"
+  },
+  {
+    "file": "tamilNaduCollegesExtended.ts",
+    "id": "karpagam-institute-of-tech",
+    "name": "Karpagam Institute of Technology (KIT Seerapalayam)",
+    "shortName": "KIT Seerapalayam",
+    "city": "Seerapalayam, Pollachi Main Road, Coimbatore",
+    "district": "Coimbatore",
+    "currentImage": "https://images.unsplash.com/photo-1498243691581-b145c3f54a5a?auto=format&fit=crop&w=1000&q=80"
+  },
+  {
+    "file": "tamilNaduCollegesExtended.ts",
+    "id": "hindusthan-institute-of-tech",
+    "name": "Hindusthan Institute of Technology (HIT Malumichampatti)",
+    "shortName": "HIT Malumichampatti",
+    "city": "Malumichampatti / Othakkalmandapam, Coimbatore",
+    "district": "Coimbatore",
+    "currentImage": "https://images.unsplash.com/photo-1580582932707-520aed937b7b?auto=format&fit=crop&w=1000&q=80"
+  },
+  {
+    "file": "tamilNaduCollegesExtended.ts",
+    "id": "jansons-institute-of-technology",
+    "name": "Jansons Institute of Technology (JIT Karumathampatti)",
+    "shortName": "Jansons JIT",
+    "city": "Karumathampatti, Coimbatore",
+    "district": "Coimbatore",
+    "currentImage": "https://images.unsplash.com/photo-1564981797816-1043664bf78d?auto=format&fit=crop&w=1000&q=80"
+  },
+  {
+    "file": "tamilNaduCollegesExtended.ts",
+    "id": "sri-shakthi-institute-cbe",
+    "name": "Sri Shakthi Institute of Engineering and Technology",
+    "shortName": "Sri Shakthi SIET",
+    "city": "Chinniyampalayam, Avinashi Road, Coimbatore",
+    "district": "Coimbatore",
+    "currentImage": "https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?auto=format&fit=crop&w=1000&q=80"
+  },
+  {
+    "file": "tamilNaduCollegesExtended.ts",
+    "id": "kgisl-institute-of-tech",
+    "name": "KGISL Institute of Technology (KiTE Saravanampatti)",
+    "shortName": "KGISL KiTE",
+    "city": "Saravanampatti, Coimbatore",
+    "district": "Coimbatore",
+    "currentImage": "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1000&q=80"
+  },
+  {
+    "file": "tamilNaduCollegesExtended.ts",
+    "id": "nehru-inst-of-engg-and-tech",
+    "name": "Nehru Institute of Engineering and Technology (NIET TM Palayam)",
+    "shortName": "Nehru NIET",
+    "city": "Thirumalayampalayam, Coimbatore",
+    "district": "Coimbatore",
+    "currentImage": "https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1000&q=80"
+  },
+  {
+    "file": "tamilNaduCollegesExtended.ts",
+    "id": "nehru-institute-of-technology",
+    "name": "Nehru Institute of Technology (NIT Kaliapuram)",
+    "shortName": "NIT Kaliapuram",
+    "city": "Kaliapuram, Thirumalayampalayam, Coimbatore",
+    "district": "Coimbatore",
+    "currentImage": "https://images.unsplash.com/photo-1525921429624-479b6a26d84d?auto=format&fit=crop&w=1000&q=80"
+  },
+  {
+    "file": "tamilNaduCollegesExtended.ts",
+    "id": "ppg-institute-of-technology",
+    "name": "PPG Institute of Technology (PPGIT Saravanampatti)",
+    "shortName": "PPG iTech Saravanampatti",
+    "city": "Saravanampatti, Coimbatore",
+    "district": "Coimbatore",
+    "currentImage": "https://images.unsplash.com/photo-1576495199011-eb94736d05d6?auto=format&fit=crop&w=1000&q=80"
+  },
+  {
+    "file": "tamilNaduCollegesExtended.ts",
+    "id": "kathir-college-of-engineering",
+    "name": "Kathir College of Engineering (Neelambur)",
+    "shortName": "Kathir Engineering Neelambur",
+    "city": "Neelambur, Avinashi Road, Coimbatore",
+    "district": "Coimbatore",
+    "currentImage": "https://images.unsplash.com/photo-1492538368677-f6e0afe31dcc?auto=format&fit=crop&w=1000&q=80"
+  },
+  {
+    "file": "tamilNaduCollegesExtended.ts",
+    "id": "park-college-of-engineering",
+    "name": "Park College of Engineering and Technology (PCET Kaniyur)",
+    "shortName": "Park PCET Kaniyur",
+    "city": "Kaniyur, Avinashi Road, Coimbatore",
+    "district": "Coimbatore",
+    "currentImage": "https://images.unsplash.com/photo-1590012314607-cda9d9b699ae?auto=format&fit=crop&w=1000&q=80"
+  },
+  {
+    "file": "tamilNaduCollegesExtended.ts",
+    "id": "rvs-college-of-engineering",
+    "name": "RVS College of Engineering and Technology (Sulur)",
+    "shortName": "RVS Engineering Sulur",
+    "city": "Kumaran Kottam Campus, Trichy Road, Sulur, Coimbatore",
+    "district": "Coimbatore",
+    "currentImage": "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=1000&q=80"
+  },
+  {
+    "file": "tamilNaduCollegesExtended.ts",
+    "id": "akshaya-college-of-engg",
+    "name": "Akshaya College of Engineering and Technology (ACET Kinathukadavu)",
+    "shortName": "Akshaya ACET",
+    "city": "Kinathukadavu, Coimbatore",
+    "district": "Coimbatore",
+    "currentImage": "https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=1000&q=80"
+  },
+  {
+    "file": "tamilNaduCollegesExtended.ts",
+    "id": "info-institute-of-engg",
+    "name": "Info Institute of Engineering (IIE Kovilpalayam)",
+    "shortName": "Info Institute Sathy Road",
+    "city": "Kovilpalayam, Sathy Road, Coimbatore",
+    "district": "Coimbatore",
+    "currentImage": "https://images.unsplash.com/photo-1519452635265-7b1fbfd1e4e0?auto=format&fit=crop&w=1000&q=80"
+  },
+  {
+    "file": "tamilNaduCollegesExtended.ts",
+    "id": "sri-ranganathar-inst-of-tech",
+    "name": "Sri Ranganathar Institute of Engineering and Technology (SRIET Athipalayam)",
+    "shortName": "SRIET Athipalayam",
+    "city": "Athipalayam, Thudiyalur via, Coimbatore",
+    "district": "Coimbatore",
+    "currentImage": "https://images.unsplash.com/photo-1541829070764-84a7d30dd3f3?auto=format&fit=crop&w=1000&q=80"
+  },
+  {
+    "file": "tamilNaduCollegesExtended.ts",
+    "id": "united-institute-of-tech",
+    "name": "United Institute of Technology (UIT Periyanaickenpalayam)",
+    "shortName": "UIT Coimbatore",
+    "city": "Periyanaickenpalayam, Coimbatore",
+    "district": "Coimbatore",
+    "currentImage": "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=1000&q=80"
+  },
+  {
+    "file": "tamilNaduCollegesExtended.ts",
+    "id": "kalaignarkarunanidhi-inst-of-tech",
+    "name": "Kalaignarkarunanidhi Institute of Technology (KIT - KIT College)",
+    "shortName": "KIT Kannampalayam",
+    "city": "Kannampalayam, Sulur, Coimbatore",
+    "district": "Coimbatore",
+    "currentImage": "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1000&q=80"
+  },
+  {
+    "file": "tamilNaduCollegesExtended.ts",
+    "id": "adithya-institute-of-technology",
+    "name": "Adithya Institute of Technology (AIT Kurumbapalayam)",
+    "shortName": "Adithya AIT",
+    "city": "Kurumbapalayam, Sathy Road, Coimbatore",
+    "district": "Coimbatore",
+    "currentImage": "https://images.unsplash.com/photo-1569098644584-210bcd375b59?auto=format&fit=crop&w=1000&q=80"
+  },
+  {
+    "file": "tamilNaduCollegesExtended.ts",
+    "id": "dhanalakshmi-srinivasan-coimbatore",
+    "name": "Dhanalakshmi Srinivasan College of Engineering (DSCE Navakkarai)",
+    "shortName": "DSCE Coimbatore",
+    "city": "NH-47 Palakkad Main Road, Navakkarai, Coimbatore",
+    "district": "Coimbatore",
+    "currentImage": "https://images.unsplash.com/photo-1592280771190-3e2e4d571952?auto=format&fit=crop&w=1000&q=80"
+  },
+  {
+    "file": "tamilNaduCollegesExtended.ts",
+    "id": "cms-college-of-engineering",
+    "name": "CMS College of Engineering and Technology (CMSCET Kumittipathi)",
+    "shortName": "CMSCET Coimbatore",
+    "city": "Kumittipathi, Othakkalmandapam, Coimbatore",
+    "district": "Coimbatore",
+    "currentImage": "https://images.unsplash.com/photo-1498243691581-b145c3f54a5a?auto=format&fit=crop&w=1000&q=80"
+  },
+  {
+    "file": "tamilNaduCollegesExtended.ts",
+    "id": "jct-college-of-engineering",
+    "name": "JCT College of Engineering and Technology (JCTCET Pichanur)",
+    "shortName": "JCT Pichanur",
+    "city": "Pichanur, Madukkarai via, Coimbatore",
+    "district": "Coimbatore",
+    "currentImage": "https://images.unsplash.com/photo-1580582932707-520aed937b7b?auto=format&fit=crop&w=1000&q=80"
+  },
+  {
+    "file": "tamilNaduCollegesExtended.ts",
+    "id": "svs-college-of-engineering",
+    "name": "SVS College of Engineering (SVS Arasampalayam)",
+    "shortName": "SVS Kinathukadavu",
+    "city": "JP Nagar, Arasampalayam, Coimbatore",
+    "district": "Coimbatore",
+    "currentImage": "https://images.unsplash.com/photo-1564981797816-1043664bf78d?auto=format&fit=crop&w=1000&q=80"
+  },
+  {
+    "file": "tamilNaduCollegesExtended.ts",
+    "id": "park-college-of-technology",
+    "name": "Park College of Technology (PCT Karumathampatti)",
+    "shortName": "PCT Karumathampatti",
+    "city": "Kaniyur / Karumathampatti, Coimbatore",
+    "district": "Coimbatore",
+    "currentImage": "https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?auto=format&fit=crop&w=1000&q=80"
+  },
+  {
+    "file": "tamilNaduCollegesExtended.ts",
+    "id": "christ-the-king-engg-college",
+    "name": "Christ the King Engineering College (CKEC Karamadai)",
+    "shortName": "CKEC Karamadai",
+    "city": "Cecily Nagar, Chikkarampalayam, Karamadai, Coimbatore",
+    "district": "Coimbatore",
+    "currentImage": "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1000&q=80"
+  },
+  {
+    "file": "tamilNaduCollegesExtended.ts",
+    "id": "suguna-college-of-engineering",
+    "name": "Suguna College of Engineering (Neelambur / Kalapatti Road)",
+    "shortName": "Suguna College",
+    "city": "Kalapatti Road, Neelambur, Coimbatore",
+    "district": "Coimbatore",
+    "currentImage": "https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1000&q=80"
+  },
+  {
+    "file": "tamilNaduCollegesExtended.ts",
+    "id": "asian-college-of-engg-and-tech",
+    "name": "Asian College of Engineering and Technology (ACET Saravanampatti)",
+    "shortName": "Asian College CBE",
+    "city": "Asian College Road, Kondayampalayam, Saravanampatti, Coimbatore",
+    "district": "Coimbatore",
+    "currentImage": "https://images.unsplash.com/photo-1525921429624-479b6a26d84d?auto=format&fit=crop&w=1000&q=80"
+  },
+  {
+    "file": "tamilNaduCollegesExtended.ts",
+    "id": "indus-college-of-engineering",
+    "name": "Indus College of Engineering (Alandurai / Siruvani Road)",
+    "shortName": "Indus Alandurai",
+    "city": "Alandurai, Siruvani Main Road, Coimbatore",
+    "district": "Coimbatore",
+    "currentImage": "https://images.unsplash.com/photo-1576495199011-eb94736d05d6?auto=format&fit=crop&w=1000&q=80"
+  },
+  {
+    "file": "tamilNaduCollegesExtended.ts",
+    "id": "ranganathan-engineering-college",
+    "name": "Ranganathan Engineering College (REC Viraliyur / Thondamuthur)",
+    "shortName": "Ranganathan REC",
+    "city": "Viraliyur, Thondamuthur via, Coimbatore",
+    "district": "Coimbatore",
+    "currentImage": "https://images.unsplash.com/photo-1492538368677-f6e0afe31dcc?auto=format&fit=crop&w=1000&q=80"
+  },
+  {
+    "file": "tamilNaduCollegesExtended.ts",
+    "id": "mcet-pollachi",
+    "name": "Dr. Mahalingam College of Engineering and Technology (MCET Pollachi)",
+    "shortName": "MCET Pollachi",
+    "city": "NPT-MCET Campus, Udumalai Road, Pollachi, Coimbatore",
+    "district": "Coimbatore",
+    "currentImage": "https://images.unsplash.com/photo-1590012314607-cda9d9b699ae?auto=format&fit=crop&w=1000&q=80"
+  },
+  {
+    "file": "tamilNaduCollegesExtended.ts",
+    "id": "pa-college-of-engineering",
+    "name": "P.A. College of Engineering and Technology (PACET Pollachi)",
+    "shortName": "PACET Pollachi",
+    "city": "Palladam Road, Pollachi, Coimbatore",
+    "district": "Coimbatore",
+    "currentImage": "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=1000&q=80"
+  },
+  {
+    "file": "tamilNaduCollegesExtended.ts",
+    "id": "pollachi-institute-of-engg",
+    "name": "Pollachi Institute of Engineering and Technology (PIET Pollachi)",
+    "shortName": "PIET Pollachi",
+    "city": "Main Road, Poosaripatti, Pollachi, Coimbatore",
+    "district": "Coimbatore",
+    "currentImage": "https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=1000&q=80"
+  },
+  {
+    "file": "tamilNaduCollegesExtended.ts",
+    "id": "csi-college-of-engineering",
+    "name": "CSI College of Engineering (Ketti Valley, Ooty / Nilgiris)",
+    "shortName": "CSI College Ketti Ooty",
+    "city": "Ketti Valley, Ooty, Nilgiris",
+    "district": "Nilgiris",
+    "currentImage": "https://images.unsplash.com/photo-1519452635265-7b1fbfd1e4e0?auto=format&fit=crop&w=1000&q=80"
+  },
+  {
+    "file": "tamilNaduCollegesExtended.ts",
+    "id": "velalar-college-of-engg",
+    "name": "Velalar College of Engineering and Technology (VCET Thindal, Erode)",
+    "shortName": "VCET Erode",
+    "city": "Thindal, Erode",
+    "district": "Erode",
+    "currentImage": "https://images.unsplash.com/photo-1541829070764-84a7d30dd3f3?auto=format&fit=crop&w=1000&q=80"
+  },
+  {
+    "file": "tamilNaduCollegesExtended.ts",
+    "id": "nandha-engineering-college",
+    "name": "Nandha Engineering College (NEC Vaikkaalmedu, Erode)",
+    "shortName": "Nandha NEC Erode",
+    "city": "Perundurai Main Road, Erode",
+    "district": "Erode",
+    "currentImage": "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=1000&q=80"
+  },
+  {
+    "file": "tamilNaduCollegesExtended.ts",
+    "id": "nandha-college-of-technology",
+    "name": "Nandha College of Technology (NCT Perundurai Road, Erode)",
+    "shortName": "NCT Erode",
+    "city": "Perundurai Road, Erode",
+    "district": "Erode",
+    "currentImage": "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1000&q=80"
+  },
+  {
+    "file": "tamilNaduCollegesExtended.ts",
+    "id": "erode-sengunthar-engg-college",
+    "name": "Erode Sengunthar Engineering College (ESEC Thudupathi, Perundurai)",
+    "shortName": "ESEC Perundurai",
+    "city": "Thudupathi, Perundurai, Erode",
+    "district": "Erode",
+    "currentImage": "https://images.unsplash.com/photo-1569098644584-210bcd375b59?auto=format&fit=crop&w=1000&q=80"
+  },
+  {
+    "file": "tamilNaduCollegesExtended.ts",
+    "id": "sasurie-college-of-engg",
+    "name": "Sasurie College of Engineering (Vijayamangalam, Tiruppur)",
+    "shortName": "Sasurie Vijayamangalam",
+    "city": "Vijayamangalam, Tiruppur",
+    "district": "Tiruppur",
+    "currentImage": "https://images.unsplash.com/photo-1592280771190-3e2e4d571952?auto=format&fit=crop&w=1000&q=80"
+  },
+  {
+    "file": "tamilNaduCollegesExtended.ts",
+    "id": "builders-engineering-college",
+    "name": "Builders Engineering College (Kangeyam / Tiruppur)",
+    "shortName": "Builders College Kangeyam",
+    "city": "Nathakadaiyur, Kangeyam, Tiruppur",
+    "district": "Tiruppur",
+    "currentImage": "https://images.unsplash.com/photo-1498243691581-b145c3f54a5a?auto=format&fit=crop&w=1000&q=80"
+  },
+  {
+    "file": "tamilNaduCollegesExtended.ts",
+    "id": "jay-shriram-group-of-inst",
+    "name": "Jay Shriram Group of Institutions (Tiruppur)",
+    "shortName": "Jay Shriram Tiruppur",
+    "city": "Karupparayanpalayam, Tiruppur",
+    "district": "Tiruppur",
+    "currentImage": "https://images.unsplash.com/photo-1580582932707-520aed937b7b?auto=format&fit=crop&w=1000&q=80"
+  },
+  {
+    "file": "tamilNaduCollegesExtended.ts",
+    "id": "rec-chennai",
+    "name": "Rajalakshmi Engineering College (REC Thandalam)",
+    "shortName": "REC Chennai",
+    "city": "Thandalam, Chennai",
+    "district": "Kancheepuram",
+    "currentImage": "https://images.unsplash.com/photo-1564981797816-1043664bf78d?auto=format&fit=crop&w=1000&q=80"
+  },
+  {
+    "file": "tamilNaduCollegesExtended.ts",
+    "id": "cit-chennai",
+    "name": "Chennai Institute of Technology (CIT Kundrathur)",
+    "shortName": "CIT Chennai",
+    "city": "Kundrathur, Chennai",
+    "district": "Chennai",
+    "currentImage": "https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?auto=format&fit=crop&w=1000&q=80"
+  },
+  {
+    "file": "tamilNaduCollegesExtended.ts",
+    "id": "svce-sriperumbudur",
+    "name": "Sri Venkateswara College of Engineering (SVCE)",
+    "shortName": "SVCE Sriperumbudur",
+    "city": "Pennalur, Sriperumbudur",
+    "district": "Kancheepuram",
+    "currentImage": "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1000&q=80"
+  },
+  {
+    "file": "tamilNaduCollegesExtended.ts",
+    "id": "sathyabama-chennai",
+    "name": "Sathyabama Institute of Science and Technology",
+    "shortName": "Sathyabama Deemed Univ",
+    "city": "OMR, Chennai",
+    "district": "Chennai",
+    "currentImage": "https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1000&q=80"
+  },
+  {
+    "file": "tamilNaduCollegesExtended.ts",
+    "id": "gce-salem",
+    "name": "Government College of Engineering, Salem (GCE Salem)",
+    "shortName": "GCE Salem",
+    "city": "Karuppur, Salem",
+    "district": "Salem",
+    "currentImage": "https://images.unsplash.com/photo-1525921429624-479b6a26d84d?auto=format&fit=crop&w=1000&q=80"
+  },
+  {
+    "file": "tamilNaduCollegesExtended.ts",
+    "id": "sona-college-salem",
+    "name": "Sona College of Technology (Sona Salem)",
+    "shortName": "Sona College Salem",
+    "city": "Junction Main Road, Salem",
+    "district": "Salem",
+    "currentImage": "https://images.unsplash.com/photo-1576495199011-eb94736d05d6?auto=format&fit=crop&w=1000&q=80"
+  },
+  {
+    "file": "tamilNaduCollegesExtended.ts",
+    "id": "knowledge-institute-of-tech",
+    "name": "Knowledge Institute of Technology (KIOT Kakapalayam, Salem)",
+    "shortName": "KIOT Salem",
+    "city": "Kakapalayam, Salem",
+    "district": "Salem",
+    "currentImage": "https://images.unsplash.com/photo-1492538368677-f6e0afe31dcc?auto=format&fit=crop&w=1000&q=80"
+  },
+  {
+    "file": "tamilNaduCollegesExtended.ts",
+    "id": "ksr-college-of-tech",
+    "name": "K.S. Rangasamy College of Technology (KSRCT Tiruchengode)",
+    "shortName": "KSRCT Namakkal",
+    "city": "Tiruchengode, Namakkal",
+    "district": "Namakkal",
+    "currentImage": "https://images.unsplash.com/photo-1590012314607-cda9d9b699ae?auto=format&fit=crop&w=1000&q=80"
+  },
+  {
+    "file": "tamilNaduCollegesExtended.ts",
+    "id": "ksr-institute-for-engg-tech",
+    "name": "KSR Institute for Engineering and Technology (KSRIET Tiruchengode)",
+    "shortName": "KSRIET Namakkal",
+    "city": "Tiruchengode, Namakkal",
+    "district": "Namakkal",
+    "currentImage": "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=1000&q=80"
+  },
+  {
+    "file": "tamilNaduCollegesExtended.ts",
+    "id": "paavai-engineering-college",
+    "name": "Paavai Engineering College (PEC Pachal, Namakkal)",
+    "shortName": "Paavai PEC",
+    "city": "Pachal, Namakkal",
+    "district": "Namakkal",
+    "currentImage": "https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=1000&q=80"
+  },
+  {
+    "file": "tamilNaduCollegesExtended.ts",
+    "id": "mahendra-engineering-college",
+    "name": "Mahendra Engineering College (MEC Mallasamudram)",
+    "shortName": "Mahendra MEC",
+    "city": "Mallasamudram, Namakkal",
+    "district": "Namakkal",
+    "currentImage": "https://images.unsplash.com/photo-1519452635265-7b1fbfd1e4e0?auto=format&fit=crop&w=1000&q=80"
+  },
+  {
+    "file": "tamilNaduCollegesExtended.ts",
+    "id": "m-kumarasamy-karur",
+    "name": "M. Kumarasamy College of Engineering (MKCE Karur)",
+    "shortName": "MKCE Karur",
+    "city": "Thalavapalayam, Karur",
+    "district": "Karur",
+    "currentImage": "https://images.unsplash.com/photo-1541829070764-84a7d30dd3f3?auto=format&fit=crop&w=1000&q=80"
+  },
+  {
+    "file": "tamilNaduCollegesExtended.ts",
+    "id": "chettinad-college-of-engg-karur",
+    "name": "Chettinad College of Engineering and Technology (Puliyur, Karur)",
+    "shortName": "Chettinad Tech Karur",
+    "city": "NH-67 Trichy Road, Puliyur, Karur",
+    "district": "Karur",
+    "currentImage": "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=1000&q=80"
+  },
+  {
+    "file": "tamilNaduCollegesExtended.ts",
+    "id": "national-engineering-college",
+    "name": "National Engineering College (NEC Kovilpatti)",
+    "shortName": "NEC Kovilpatti",
+    "city": "Kovilpatti, Tirunelveli Region",
+    "district": "Thoothukudi",
+    "currentImage": "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1000&q=80"
+  },
+  {
+    "file": "tamilNaduCollegesStatewide.ts",
+    "id": "rajalakshmi-engineering-college",
+    "name": "Rajalakshmi Engineering College (REC Thandalam)",
+    "shortName": "REC Thandalam",
+    "city": "Thandalam, Chennai",
+    "district": "Kancheepuram",
+    "currentImage": "https://images.unsplash.com/photo-1569098644584-210bcd375b59?auto=format&fit=crop&w=1000&q=80"
+  },
+  {
+    "file": "tamilNaduCollegesStatewide.ts",
+    "id": "rajalakshmi-institute-of-tech",
+    "name": "Rajalakshmi Institute of Technology (RIT Kuthambakkam)",
+    "shortName": "RIT Chennai",
+    "city": "Kuthambakkam, Poonamallee, Chennai",
+    "district": "Tiruvallur",
+    "currentImage": "https://images.unsplash.com/photo-1592280771190-3e2e4d571952?auto=format&fit=crop&w=1000&q=80"
+  },
+  {
+    "file": "tamilNaduCollegesStatewide.ts",
+    "id": "sri-venkateswara-college-of-engg",
+    "name": "Sri Venkateswara College of Engineering (SVCE Sriperumbudur)",
+    "shortName": "SVCE Sriperumbudur",
+    "city": "Pennalur, Sriperumbudur",
+    "district": "Kancheepuram",
+    "currentImage": "https://images.unsplash.com/photo-1498243691581-b145c3f54a5a?auto=format&fit=crop&w=1000&q=80"
+  },
+  {
+    "file": "tamilNaduCollegesStatewide.ts",
+    "id": "st-josephs-college-of-engg",
+    "name": "St. Joseph",
+    "shortName": "St. Joseph",
+    "city": "Jeppiaar Nagar, OMR, Chennai",
+    "district": "Chennai",
+    "currentImage": "https://images.unsplash.com/photo-1580582932707-520aed937b7b?auto=format&fit=crop&w=1000&q=80"
+  },
+  {
+    "file": "tamilNaduCollegesStatewide.ts",
+    "id": "st-josephs-institute-of-tech",
+    "name": "St. Joseph",
+    "shortName": "SJIT Chennai",
+    "city": "OMR, Chennai",
+    "district": "Chennai",
+    "currentImage": "https://images.unsplash.com/photo-1564981797816-1043664bf78d?auto=format&fit=crop&w=1000&q=80"
+  },
+  {
+    "file": "tamilNaduCollegesStatewide.ts",
+    "id": "rmk-engineering-college",
+    "name": "RMK Engineering College (Kavaraipettai)",
+    "shortName": "RMK Engineering",
+    "city": "RSM Nagar, Kavaraipettai, Gummidipoondi",
+    "district": "Tiruvallur",
+    "currentImage": "https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?auto=format&fit=crop&w=1000&q=80"
+  },
+  {
+    "file": "tamilNaduCollegesStatewide.ts",
+    "id": "rmd-engineering-college",
+    "name": "R.M.D. Engineering College (Kavaraipettai)",
+    "shortName": "RMD Engineering",
+    "city": "RSM Nagar, Kavaraipettai",
+    "district": "Tiruvallur",
+    "currentImage": "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1000&q=80"
+  },
+  {
+    "file": "tamilNaduCollegesStatewide.ts",
+    "id": "easwari-engineering-college",
+    "name": "Easwari Engineering College (SRM Ramapuram Campus)",
+    "shortName": "Easwari Ramapuram",
+    "city": "Ramapuram, Chennai",
+    "district": "Chennai",
+    "currentImage": "https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1000&q=80"
+  },
+  {
+    "file": "tamilNaduCollegesStatewide.ts",
+    "id": "meenakshi-sundararajan-engg-college",
+    "name": "Meenakshi Sundararajan Engineering College (MSEC Kodambakkam)",
+    "shortName": "MSEC Kodambakkam",
+    "city": "Arcot Road, Kodambakkam, Chennai",
+    "district": "Chennai",
+    "currentImage": "https://images.unsplash.com/photo-1525921429624-479b6a26d84d?auto=format&fit=crop&w=1000&q=80"
+  },
+  {
+    "file": "tamilNaduCollegesStatewide.ts",
+    "id": "panimalar-engineering-college",
+    "name": "Panimalar Engineering College (Poonamallee / Nazarathpettai)",
+    "shortName": "Panimalar Poonamallee",
+    "city": "Nazarathpettai, Poonamallee, Chennai",
+    "district": "Tiruvallur",
+    "currentImage": "https://images.unsplash.com/photo-1576495199011-eb94736d05d6?auto=format&fit=crop&w=1000&q=80"
+  },
+  {
+    "file": "tamilNaduCollegesStatewide.ts",
+    "id": "saveetha-engineering-college",
+    "name": "Saveetha Engineering College (SEC Thandalam)",
+    "shortName": "Saveetha SEC",
+    "city": "Saveetha Nagar, Thandalam, Chennai",
+    "district": "Kancheepuram",
+    "currentImage": "https://images.unsplash.com/photo-1492538368677-f6e0afe31dcc?auto=format&fit=crop&w=1000&q=80"
+  },
+  {
+    "file": "tamilNaduCollegesStatewide.ts",
+    "id": "sri-sairam-engineering-college",
+    "name": "Sri Sairam Engineering College (West Tambaram)",
+    "shortName": "Sairam West Tambaram",
+    "city": "Sai Leo Nagar, West Tambaram, Chennai",
+    "district": "Chengalpattu",
+    "currentImage": "https://images.unsplash.com/photo-1590012314607-cda9d9b699ae?auto=format&fit=crop&w=1000&q=80"
+  },
+  {
+    "file": "tamilNaduCollegesStatewide.ts",
+    "id": "velammal-engineering-college",
+    "name": "Velammal Engineering College (Surapet, Chennai)",
+    "shortName": "Velammal Surapet",
+    "city": "Ambattur-Redhills Road, Surapet, Chennai",
+    "district": "Chennai",
+    "currentImage": "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=1000&q=80"
+  },
+  {
+    "file": "tamilNaduCollegesStatewide.ts",
+    "id": "loyola-icam-college-of-engg",
+    "name": "Loyola-ICAM College of Engineering and Technology (LICET Nungambakkam)",
+    "shortName": "LICET Nungambakkam",
+    "city": "Loyola Campus, Nungambakkam, Chennai",
+    "district": "Chennai",
+    "currentImage": "https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=1000&q=80"
+  },
+  {
+    "file": "tamilNaduCollegesStatewide.ts",
+    "id": "kcg-college-of-technology",
+    "name": "KCG College of Technology (Karapakkam OMR)",
+    "shortName": "KCG OMR",
+    "city": "Karapakkam, OMR, Chennai",
+    "district": "Chennai",
+    "currentImage": "https://images.unsplash.com/photo-1519452635265-7b1fbfd1e4e0?auto=format&fit=crop&w=1000&q=80"
+  },
+  {
+    "file": "tamilNaduCollegesStatewide.ts",
+    "id": "velammal-college-madurai",
+    "name": "Velammal College of Engineering and Technology (VCET Madurai)",
+    "shortName": "VCET Madurai",
+    "city": "Madurai-Rameswaram High Road, Viraganoor, Madurai",
+    "district": "Madurai",
+    "currentImage": "https://images.unsplash.com/photo-1541829070764-84a7d30dd3f3?auto=format&fit=crop&w=1000&q=80"
+  },
+  {
+    "file": "tamilNaduCollegesStatewide.ts",
+    "id": "sethu-institute-of-technology",
+    "name": "Sethu Institute of Technology (SIT Kariapatti / Madurai)",
+    "shortName": "SIT Kariapatti",
+    "city": "Pulloor, Kariapatti (Madurai-Tuticorin NH)",
+    "district": "Virudhunagar",
+    "currentImage": "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=1000&q=80"
+  },
+  {
+    "file": "tamilNaduCollegesStatewide.ts",
+    "id": "kln-college-of-engineering",
+    "name": "K.L.N. College of Engineering (KLNCE Pottapalayam)",
+    "shortName": "KLN Engineering Madurai",
+    "city": "Pottapalayam, Sivagangai / Madurai Region",
+    "district": "Sivaganga",
+    "currentImage": "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1000&q=80"
+  },
+  {
+    "file": "tamilNaduCollegesStatewide.ts",
+    "id": "psna-college-of-engg",
+    "name": "PSNA College of Engineering and Technology (Dindigul)",
+    "shortName": "PSNA Dindigul",
+    "city": "Kothandaraman Nagar, Muthurajawala, Dindigul",
+    "district": "Dindigul",
+    "currentImage": "https://images.unsplash.com/photo-1569098644584-210bcd375b59?auto=format&fit=crop&w=1000&q=80"
+  },
+  {
+    "file": "tamilNaduCollegesStatewide.ts",
+    "id": "mepco-schlenk-engg-college",
+    "name": "Mepco Schlenk Engineering College (Sivakasi)",
+    "shortName": "Mepco Sivakasi",
+    "city": "Mepco Nagar, Sivakasi",
+    "district": "Virudhunagar",
+    "currentImage": "https://images.unsplash.com/photo-1592280771190-3e2e4d571952?auto=format&fit=crop&w=1000&q=80"
+  },
+  {
+    "file": "tamilNaduCollegesStatewide.ts",
+    "id": "kamaraj-college-of-engg",
+    "name": "Kamaraj College of Engineering and Technology (KCET Virudhunagar)",
+    "shortName": "Kamaraj KCET",
+    "city": "S.P.G.C. Nagar, K.Vellakulam, Madurai-Virudhunagar NH",
+    "district": "Virudhunagar",
+    "currentImage": "https://images.unsplash.com/photo-1498243691581-b145c3f54a5a?auto=format&fit=crop&w=1000&q=80"
+  },
+  {
+    "file": "tamilNaduCollegesStatewide.ts",
+    "id": "gce-bodinayakkanur",
+    "name": "Government College of Engineering, Bodinayakkanur (GCE Theni)",
+    "shortName": "GCE Theni",
+    "city": "Bodinayakkanur, Theni",
+    "district": "Theni",
+    "currentImage": "https://images.unsplash.com/photo-1580582932707-520aed937b7b?auto=format&fit=crop&w=1000&q=80"
+  },
+  {
+    "file": "tamilNaduCollegesStatewide.ts",
+    "id": "gce-tirunelveli",
+    "name": "Government College of Engineering, Tirunelveli (GCE Tirunelveli)",
+    "shortName": "GCE Tirunelveli",
+    "city": "Tirunelveli - Trivandrum Highway, Tirunelveli",
+    "district": "Tirunelveli",
+    "currentImage": "https://images.unsplash.com/photo-1564981797816-1043664bf78d?auto=format&fit=crop&w=1000&q=80"
+  },
+  {
+    "file": "tamilNaduCollegesStatewide.ts",
+    "id": "francis-xavier-engg-college",
+    "name": "Francis Xavier Engineering College (FXEC Tirunelveli)",
+    "shortName": "FXEC Tirunelveli",
+    "city": "Vannarpettai, Tirunelveli",
+    "district": "Tirunelveli",
+    "currentImage": "https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?auto=format&fit=crop&w=1000&q=80"
+  },
+  {
+    "file": "tamilNaduCollegesStatewide.ts",
+    "id": "st-xaviers-catholic-college-kanyakumari",
+    "name": "St. Xavier",
+    "shortName": "St. Xavier",
+    "city": "Chunkankadai, Nagercoil",
+    "district": "Kanniyakumari",
+    "currentImage": "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1000&q=80"
+  },
+  {
+    "file": "tamilNaduCollegesStatewide.ts",
+    "id": "saranathan-college-of-engg",
+    "name": "Saranathan College of Engineering (Panjappur, Trichy)",
+    "shortName": "Saranathan Trichy",
+    "city": "Venkateswara Nagar, Panjappur, Trichy",
+    "district": "Tiruchirappalli",
+    "currentImage": "https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1000&q=80"
+  },
+  {
+    "file": "tamilNaduCollegesStatewide.ts",
+    "id": "k-ramakrishnan-college-of-engg",
+    "name": "K. Ramakrishnan College of Engineering (KRCE Samayapuram)",
+    "shortName": "KRCE Trichy",
+    "city": "Samayapuram, Trichy",
+    "district": "Tiruchirappalli",
+    "currentImage": "https://images.unsplash.com/photo-1525921429624-479b6a26d84d?auto=format&fit=crop&w=1000&q=80"
+  },
+  {
+    "file": "tamilNaduCollegesStatewide.ts",
+    "id": "k-ramakrishnan-college-of-tech",
+    "name": "K. Ramakrishnan College of Technology (KRCT Samayapuram)",
+    "shortName": "KRCT Trichy",
+    "city": "Kariyamanickam Road, Samayapuram, Trichy",
+    "district": "Tiruchirappalli",
+    "currentImage": "https://images.unsplash.com/photo-1576495199011-eb94736d05d6?auto=format&fit=crop&w=1000&q=80"
+  },
+  {
+    "file": "tamilNaduCollegesStatewide.ts",
+    "id": "m-kumarasamy-college-of-engg",
+    "name": "M. Kumarasamy College of Engineering (MKCE Thalavapalayam)",
+    "shortName": "MKCE Karur",
+    "city": "Thalavapalayam, Karur",
+    "district": "Karur",
+    "currentImage": "https://images.unsplash.com/photo-1492538368677-f6e0afe31dcc?auto=format&fit=crop&w=1000&q=80"
+  },
+  {
+    "file": "tamilNaduCollegesStatewide.ts",
+    "id": "vsb-engineering-college",
+    "name": "V.S.B. Engineering College (Karur)",
+    "shortName": "VSB Karur",
+    "city": "NH-67 Covai Road, Karudayampalayam, Karur",
+    "district": "Karur",
+    "currentImage": "https://images.unsplash.com/photo-1590012314607-cda9d9b699ae?auto=format&fit=crop&w=1000&q=80"
+  },
+  {
+    "file": "tamilNaduCollegesStatewide.ts",
+    "id": "gce-salem",
+    "name": "Government College of Engineering, Salem (GCE Salem)",
+    "shortName": "GCE Salem",
+    "city": "NH-44 Bangalore Highway, Salem",
+    "district": "Salem",
+    "currentImage": "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=1000&q=80"
+  },
+  {
+    "file": "tamilNaduCollegesStatewide.ts",
+    "id": "sona-college-of-technology",
+    "name": "Sona College of Technology (Salem)",
+    "shortName": "Sona Salem",
+    "city": "Junction Main Road, Salem",
+    "district": "Salem",
+    "currentImage": "https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=1000&q=80"
+  },
+  {
+    "file": "tamilNaduCollegesStatewide.ts",
+    "id": "knowledge-institute-of-tech",
+    "name": "Knowledge Institute of Technology (KIOT Kakapalayam, Salem)",
+    "shortName": "KIOT Salem",
+    "city": "NH-544 Salem-CBE Highway, Kakapalayam, Salem",
+    "district": "Salem",
+    "currentImage": "https://images.unsplash.com/photo-1519452635265-7b1fbfd1e4e0?auto=format&fit=crop&w=1000&q=80"
+  },
+  {
+    "file": "tamilNaduCollegesStatewide.ts",
+    "id": "ksr-college-of-technology",
+    "name": "K.S. Rangasamy College of Technology (KSRCT Tiruchengode)",
+    "shortName": "KSRCT Tiruchengode",
+    "city": "KSR Kalvi Nagar, Tiruchengode",
+    "district": "Namakkal",
+    "currentImage": "https://images.unsplash.com/photo-1541829070764-84a7d30dd3f3?auto=format&fit=crop&w=1000&q=80"
+  },
+  {
+    "file": "tamilNaduCollegesStatewide.ts",
+    "id": "paavai-engineering-college",
+    "name": "Paavai Engineering College (PEC Pachal, Namakkal)",
+    "shortName": "Paavai PEC",
+    "city": "Paavai Nagar, NH-44, Pachal, Namakkal",
+    "district": "Namakkal",
+    "currentImage": "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=1000&q=80"
+  },
+  {
+    "file": "tamilNaduCollegesStatewide.ts",
+    "id": "mahendra-engineering-college",
+    "name": "Mahendra Engineering College (MEC Mallasamudram)",
+    "shortName": "Mahendra MEC",
+    "city": "Mahendhirapuri, Mallasamudram, Namakkal",
+    "district": "Namakkal",
+    "currentImage": "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1000&q=80"
+  },
+  {
+    "file": "tamilNaduCollegesStatewide.ts",
+    "id": "gce-bargur-krishnagiri",
+    "name": "Government College of Engineering, Bargur (GCE Bargur)",
+    "shortName": "GCE Bargur",
+    "city": "NH-46 Chennai-Bengaluru Highway, Bargur",
+    "district": "Krishnagiri",
+    "currentImage": "https://images.unsplash.com/photo-1569098644584-210bcd375b59?auto=format&fit=crop&w=1000&q=80"
+  },
+  {
+    "file": "tamilNaduCollegesStatewide.ts",
+    "id": "adhiyamaan-college-of-engg",
+    "name": "Adhiyamaan College of Engineering (ACE Hosur)",
+    "shortName": "ACE Hosur",
+    "city": "Dr. M.G.R. Nagar, Hosur",
+    "district": "Krishnagiri",
+    "currentImage": "https://images.unsplash.com/photo-1592280771190-3e2e4d571952?auto=format&fit=crop&w=1000&q=80"
+  },
+  {
+    "file": "tamilNaduCollegesStatewide.ts",
+    "id": "tpgit-vellore",
+    "name": "Thanthai Periyar Government Institute of Technology (TPGIT Bagayam, Vellore)",
+    "shortName": "TPGIT Vellore",
+    "city": "Bagayam, Vellore",
+    "district": "Vellore",
+    "currentImage": "https://images.unsplash.com/photo-1498243691581-b145c3f54a5a?auto=format&fit=crop&w=1000&q=80"
+  },
+  {
+    "file": "tamilNaduCollegesStatewide.ts",
+    "id": "arunai-engineering-college",
+    "name": "Arunai Engineering College (Mathur, Tiruvannamalai)",
+    "shortName": "Arunai AEC",
+    "city": "Mathur, Tiruvannamalai",
+    "district": "Tiruvannamalai",
+    "currentImage": "https://images.unsplash.com/photo-1580582932707-520aed937b7b?auto=format&fit=crop&w=1000&q=80"
+  },
+  {
+    "file": "tamilNaduCollegesStatewide.ts",
+    "id": "ifet-college-of-engineering",
+    "name": "IFET College of Engineering (Gangarampalayam, Villupuram)",
+    "shortName": "IFET Villupuram",
+    "city": "IFET Nagar, Gangarampalayam, Villupuram",
+    "district": "Viluppuram",
+    "currentImage": "https://images.unsplash.com/photo-1564981797816-1043664bf78d?auto=format&fit=crop&w=1000&q=80"
+  },
+  {
+    "file": "tamilNaduCollegesStatewide.ts",
+    "id": "mailam-engineering-college",
+    "name": "Mailam Engineering College (Tindivanam / Villupuram)",
+    "shortName": "Mailam Engineering",
+    "city": "Mailam, Tindivanam Taluk, Villupuram",
+    "district": "Viluppuram",
+    "currentImage": "https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?auto=format&fit=crop&w=1000&q=80"
+  },
+  {
+    "file": "tamilNaduCollegesMega.ts",
+    "id": "uce-ariyalur",
+    "name": "University College of Engineering, Ariyalur (Anna University Campus)",
+    "shortName": "UCE Ariyalur",
+    "city": "Kathankurichi, Ariyalur",
+    "district": "Ariyalur",
+    "currentImage": "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1000&q=80"
+  },
+  {
+    "file": "tamilNaduCollegesMega.ts",
+    "id": "meenakshi-ramasamy-engg-college",
+    "name": "Meenakshi Ramasamy Engineering College (MREC Thathanur)",
+    "shortName": "MREC Ariyalur",
+    "city": "Thathanur, Udayarpalayam, Ariyalur",
+    "district": "Ariyalur",
+    "currentImage": "https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1000&q=80"
+  },
+  {
+    "file": "tamilNaduCollegesMega.ts",
+    "id": "dhanalakshmi-srinivasan-perambalur",
+    "name": "Dhanalakshmi Srinivasan Engineering College (DSEC Perambalur)",
+    "shortName": "DSEC Perambalur",
+    "city": "Thuraiyur Road, Perambalur",
+    "district": "Perambalur",
+    "currentImage": "https://images.unsplash.com/photo-1525921429624-479b6a26d84d?auto=format&fit=crop&w=1000&q=80"
+  },
+  {
+    "file": "tamilNaduCollegesMega.ts",
+    "id": "roever-engineering-college",
+    "name": "Roever Engineering College (REC Perambalur)",
+    "shortName": "Roever Perambalur",
+    "city": "Elambalur, Perambalur",
+    "district": "Perambalur",
+    "currentImage": "https://images.unsplash.com/photo-1576495199011-eb94736d05d6?auto=format&fit=crop&w=1000&q=80"
+  },
+  {
+    "file": "tamilNaduCollegesMega.ts",
+    "id": "egs-pillay-engg-college",
+    "name": "E.G.S. Pillay Engineering College (EGSP Nagapattinam)",
+    "shortName": "EGS Pillay Nagapattinam",
+    "city": "Old Nagore Road, Thethi, Nagapattinam",
+    "district": "Nagapattinam",
+    "currentImage": "https://images.unsplash.com/photo-1492538368677-f6e0afe31dcc?auto=format&fit=crop&w=1000&q=80"
+  },
+  {
+    "file": "tamilNaduCollegesMega.ts",
+    "id": "avc-college-of-engineering",
+    "name": "A.V.C. College of Engineering (Mannampandal, Mayiladuthurai)",
+    "shortName": "AVC College Mayiladuthurai",
+    "city": "Mannampandal, Mayiladuthurai",
+    "district": "Mayiladuthurai",
+    "currentImage": "https://images.unsplash.com/photo-1590012314607-cda9d9b699ae?auto=format&fit=crop&w=1000&q=80"
+  },
+  {
+    "file": "tamilNaduCollegesMega.ts",
+    "id": "anjalai-ammal-mahalingam-engg",
+    "name": "Anjalai Ammal Mahalingam Engineering College (AAMEC Kovilvenni)",
+    "shortName": "AAMEC Tiruvarur",
+    "city": "Kovilvenni, Needamangalam, Tiruvarur",
+    "district": "Tiruvarur",
+    "currentImage": "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=1000&q=80"
+  },
+  {
+    "file": "tamilNaduCollegesMega.ts",
+    "id": "krishnasamy-college-cuddalore",
+    "name": "Krishnasamy College of Engineering and Technology (KCET Nellikuppam)",
+    "shortName": "Krishnasamy Cuddalore",
+    "city": "S.Kumarapuram, Nellikuppam High Road, Cuddalore",
+    "district": "Cuddalore",
+    "currentImage": "https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=1000&q=80"
+  },
+  {
+    "file": "tamilNaduCollegesMega.ts",
+    "id": "ck-college-of-engineering",
+    "name": "C.K. College of Engineering and Technology (CKCET Cuddalore)",
+    "shortName": "CKCET Cuddalore",
+    "city": "Jayaram Nagar, Chellangkuppam, Cuddalore",
+    "district": "Cuddalore",
+    "currentImage": "https://images.unsplash.com/photo-1519452635265-7b1fbfd1e4e0?auto=format&fit=crop&w=1000&q=80"
+  },
+  {
+    "file": "tamilNaduCollegesMega.ts",
+    "id": "maha-barathi-engg-college",
+    "name": "Maha Barathi Engineering College (MBEC Arakandanallur)",
+    "shortName": "Maha Barathi Kallakurichi",
+    "city": "Arakandanallur, Kallakurichi District",
+    "district": "Kallakurichi",
+    "currentImage": "https://images.unsplash.com/photo-1541829070764-84a7d30dd3f3?auto=format&fit=crop&w=1000&q=80"
+  },
+  {
+    "file": "tamilNaduCollegesMega.ts",
+    "id": "gce-dharmapuri",
+    "name": "Government College of Engineering, Dharmapuri (GCE Dharmapuri)",
+    "shortName": "GCE Dharmapuri",
+    "city": "Settikarai, Dharmapuri",
+    "district": "Dharmapuri",
+    "currentImage": "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=1000&q=80"
+  },
+  {
+    "file": "tamilNaduCollegesMega.ts",
+    "id": "jayam-college-of-engg",
+    "name": "Jayam College of Engineering and Technology (JCET Nallanur)",
+    "shortName": "Jayam Dharmapuri",
+    "city": "Nallanur, Dharmapuri",
+    "district": "Dharmapuri",
+    "currentImage": "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1000&q=80"
+  },
+  {
+    "file": "tamilNaduCollegesMega.ts",
+    "id": "pmc-tech-hosur",
+    "name": "Er. Perumal Manimekalai College of Engineering (PMC TECH Hosur)",
+    "shortName": "PMC TECH Hosur",
+    "city": "NH-7 Koneripalli, Hosur",
+    "district": "Krishnagiri",
+    "currentImage": "https://images.unsplash.com/photo-1569098644584-210bcd375b59?auto=format&fit=crop&w=1000&q=80"
+  },
+  {
+    "file": "tamilNaduCollegesMega.ts",
+    "id": "acgcet-karaikudi",
+    "name": "Alagappa Chettiar Government College of Engineering and Technology (ACGCET Karaikudi)",
+    "shortName": "ACGCET Karaikudi",
+    "city": "College Road, Karaikudi",
+    "district": "Sivaganga",
+    "currentImage": "https://images.unsplash.com/photo-1592280771190-3e2e4d571952?auto=format&fit=crop&w=1000&q=80"
+  },
+  {
+    "file": "tamilNaduCollegesMega.ts",
+    "id": "gce-ramanathapuram",
+    "name": "Government College of Engineering, Ramanathapuram (GCE Ramnad)",
+    "shortName": "GCE Ramnad",
+    "city": "Pullangudi, Ramanathapuram",
+    "district": "Ramanathapuram",
+    "currentImage": "https://images.unsplash.com/photo-1498243691581-b145c3f54a5a?auto=format&fit=crop&w=1000&q=80"
+  },
+  {
+    "file": "tamilNaduCollegesMega.ts",
+    "id": "mohamed-sathak-engg-college",
+    "name": "Mohamed Sathak Engineering College (MSEC Kilakarai)",
+    "shortName": "Mohamed Sathak Kilakarai",
+    "city": "Kilakarai, Ramanathapuram",
+    "district": "Ramanathapuram",
+    "currentImage": "https://images.unsplash.com/photo-1580582932707-520aed937b7b?auto=format&fit=crop&w=1000&q=80"
+  },
+  {
+    "file": "tamilNaduCollegesMega.ts",
+    "id": "mount-zion-college-pudukkottai",
+    "name": "Mount Zion College of Engineering and Technology (Pillivalam, Pudukkottai)",
+    "shortName": "Mount Zion Pudukkottai",
+    "city": "Lena Vilakku, Pilivalam, Pudukkottai",
+    "district": "Pudukkottai",
+    "currentImage": "https://images.unsplash.com/photo-1564981797816-1043664bf78d?auto=format&fit=crop&w=1000&q=80"
+  },
+  {
+    "file": "tamilNaduCollegesMega.ts",
+    "id": "jp-college-of-engineering",
+    "name": "J.P. College of Engineering (JPCOE Ayikudi, Tenkasi)",
+    "shortName": "JP College Tenkasi",
+    "city": "College Nagar, Ayikudi, Tenkasi",
+    "district": "Tenkasi",
+    "currentImage": "https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?auto=format&fit=crop&w=1000&q=80"
+  },
+  {
+    "file": "tamilNaduCollegesMega.ts",
+    "id": "scad-college-tirunelveli",
+    "name": "SCAD College of Engineering and Technology (Cheranmahadevi)",
+    "shortName": "SCAD Cheranmahadevi",
+    "city": "SCAD Nagar, Cheranmahadevi, Tirunelveli",
+    "district": "Tirunelveli",
+    "currentImage": "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1000&q=80"
+  },
+  {
+    "file": "tamilNaduCollegesMega.ts",
+    "id": "ponjesly-college-of-engg",
+    "name": "Ponjesly College of Engineering (Nagercoil, Kanyakumari)",
+    "shortName": "Ponjesly Nagercoil",
+    "city": "Alamcode, Nagercoil",
+    "district": "Kanniyakumari",
+    "currentImage": "https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1000&q=80"
+  },
+  {
+    "file": "tamilNaduCollegesMega.ts",
+    "id": "noorul-islam-university",
+    "name": "Noorul Islam Centre for Higher Education (NICHE Kumaracoil)",
+    "shortName": "Noorul Islam University",
+    "city": "Kumaracoil, Thuckalay, Kanyakumari",
+    "district": "Kanniyakumari",
+    "currentImage": "https://images.unsplash.com/photo-1525921429624-479b6a26d84d?auto=format&fit=crop&w=1000&q=80"
+  },
+  {
+    "file": "tamilNaduCollegesMega.ts",
+    "id": "c-abdul-hakeem-college",
+    "name": "C. Abdul Hakeem College of Engineering and Technology (CAHCET Melvisharam)",
+    "shortName": "CAHCET Melvisharam",
+    "city": "Hakeem Nagar, Melvisharam, Ranipet",
+    "district": "Ranipet",
+    "currentImage": "https://images.unsplash.com/photo-1576495199011-eb94736d05d6?auto=format&fit=crop&w=1000&q=80"
+  },
+  {
+    "file": "tamilNaduCollegesMega.ts",
+    "id": "kingston-engineering-college",
+    "name": "Kingston Engineering College (KEC Katpadi, Vellore)",
+    "shortName": "Kingston Vellore",
+    "city": "Chithode, Katpadi, Vellore",
+    "district": "Vellore",
+    "currentImage": "https://images.unsplash.com/photo-1492538368677-f6e0afe31dcc?auto=format&fit=crop&w=1000&q=80"
+  },
+  {
+    "file": "tamilNaduCollegesMega.ts",
+    "id": "podhigai-college-tirupathur",
+    "name": "Podhigai College of Engineering and Technology (Tirupathur)",
+    "shortName": "Podhigai Tirupathur",
+    "city": "Melpattampatti, Tirupathur",
+    "district": "Tirupathur",
+    "currentImage": "https://images.unsplash.com/photo-1590012314607-cda9d9b699ae?auto=format&fit=crop&w=1000&q=80"
+  },
+  {
+    "file": "tamilNaduCollegesMega.ts",
+    "id": "periyar-maniammai-thanjavur",
+    "name": "Periyar Maniammai Institute of Science & Technology (PMIST Vallam)",
+    "shortName": "PMIST Vallam",
+    "city": "Periyar Nagar, Vallam, Thanjavur",
+    "district": "Thanjavur",
+    "currentImage": "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=1000&q=80"
+  },
+  {
+    "file": "tamilNaduCollegesMega.ts",
+    "id": "care-college-of-engg-trichy",
+    "name": "CARE College of Engineering (Kallikudi, Trichy)",
+    "shortName": "CARE Trichy",
+    "city": "Kallikudi, Dindigul Road, Trichy",
+    "district": "Tiruchirappalli",
+    "currentImage": "https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=1000&q=80"
+  },
+  {
+    "file": "tamilNaduCollegesMega.ts",
+    "id": "gce-srirangam-trichy",
+    "name": "Government College of Engineering, Srirangam (GCE Srirangam)",
+    "shortName": "GCE Srirangam",
+    "city": "Sethurappatti, Srirangam, Trichy",
+    "district": "Tiruchirappalli",
+    "currentImage": "https://images.unsplash.com/photo-1519452635265-7b1fbfd1e4e0?auto=format&fit=crop&w=1000&q=80"
+  },
+  {
+    "file": "tamilNaduCollegesMega.ts",
+    "id": "prathyusha-engg-college",
+    "name": "Prathyusha Engineering College (PEC Aranvoyalkuppam, Tiruvallur)",
+    "shortName": "Prathyusha Tiruvallur",
+    "city": "Poonamallee-Tiruvallur Road, Aranvoyalkuppam",
+    "district": "Tiruvallur",
+    "currentImage": "https://images.unsplash.com/photo-1541829070764-84a7d30dd3f3?auto=format&fit=crop&w=1000&q=80"
+  },
+  {
+    "file": "tamilNaduCollegesMega.ts",
+    "id": "sa-engineering-college",
+    "name": "S.A. Engineering College (SAEC Thiruverkadu, Chennai)",
+    "shortName": "SAEC Thiruverkadu",
+    "city": "Poonamallee-Avadi Road, Veeraraghavapuram, Thiruverkadu",
+    "district": "Tiruvallur",
+    "currentImage": "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=1000&q=80"
+  },
+  {
+    "file": "tamilNaduCollegesMega.ts",
+    "id": "dmi-college-of-engg",
+    "name": "DMI College of Engineering (Palanchur, Kancheepuram)",
+    "shortName": "DMI Palanchur",
+    "city": "Palanchur, Nazarathpet Post, Chennai-Bangalore Highway",
+    "district": "Kancheepuram",
+    "currentImage": "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1000&q=80"
+  },
+  {
+    "file": "indiaColleges.ts",
+    "id": "amrita-university",
+    "name": "Amrita Vishwa Vidyapeetham",
+    "shortName": "Amrita University",
+    "city": "Coimbatore",
+    "district": "Coimbatore",
+    "currentImage": "https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=900&q=80"
+  },
+  {
+    "file": "indiaColleges.ts",
+    "id": "vit-vellore",
+    "name": "Vellore Institute of Technology (VIT)",
+    "shortName": "VIT Vellore",
+    "city": "Vellore",
+    "district": "Vellore",
+    "currentImage": "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=900&q=80"
+  },
+  {
+    "file": "indiaColleges.ts",
+    "id": "srm-ist",
+    "name": "SRM Institute of Science and Technology",
+    "shortName": "SRM IST",
+    "city": "Kattankulathur, Chennai",
+    "district": "Chengalpattu",
+    "currentImage": "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=900&q=80"
+  },
+  {
+    "file": "indiaColleges.ts",
+    "id": "bits-pilani",
+    "name": "Birla Institute of Technology and Science (BITS Pilani)",
+    "shortName": "BITS Pilani",
+    "city": "Pilani",
+    "district": "Jhunjhunu",
+    "currentImage": "https://images.unsplash.com/photo-1498243691581-b145c3f54a5a?auto=format&fit=crop&w=900&q=80"
+  },
+  {
+    "file": "indiaColleges.ts",
+    "id": "manipal-mahe",
+    "name": "Manipal Academy of Higher Education (MAHE)",
+    "shortName": "Manipal (MIT)",
+    "city": "Manipal",
+    "district": "Udupi",
+    "currentImage": "https://images.unsplash.com/photo-1569098644584-210bcd375b59?auto=format&fit=crop&w=900&q=80"
+  },
+  {
+    "file": "indiaColleges.ts",
+    "id": "iit-madras",
+    "name": "Indian Institute of Technology Madras (IIT Madras)",
+    "shortName": "IIT Madras",
+    "city": "Chennai",
+    "district": "Chennai",
+    "currentImage": "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=900&q=80"
+  },
+  {
+    "file": "indiaColleges.ts",
+    "id": "anna-university-ceg",
+    "name": "College of Engineering, Guindy (CEG Anna University)",
+    "shortName": "CEG Anna University",
+    "city": "Chennai",
+    "district": "Chennai",
+    "currentImage": "/colleges/ceg-guindy.jpg"
+  },
+  {
+    "file": "indiaColleges.ts",
+    "id": "mit-anna-univ",
+    "name": "Madras Institute of Technology (MIT Campus, Anna University)",
+    "shortName": "MIT Chennai (Anna Univ)",
+    "city": "Chromepet, Chennai",
+    "district": "Chennai",
+    "currentImage": "/colleges/mit-chromepet.jpg"
+  },
+  {
+    "file": "indiaColleges.ts",
+    "id": "ssn-college-chennai",
+    "name": "Sri Sivasubramaniya Nadar (SSN) College of Engineering",
+    "shortName": "SSN College of Engg",
+    "city": "Kalavakkam, OMR, Chennai",
+    "district": "Chengalpattu",
+    "currentImage": "/colleges/ssn.jpg"
+  },
+  {
+    "file": "indiaColleges.ts",
+    "id": "chennai-institute-of-technology",
+    "name": "Chennai Institute of Technology (CIT Chennai)",
+    "shortName": "CIT Chennai",
+    "city": "Kundrathur, Chennai",
+    "district": "Chennai",
+    "currentImage": "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=900&q=80"
+  },
+  {
+    "file": "indiaColleges.ts",
+    "id": "rajalakshmi-engineering-college",
+    "name": "Rajalakshmi Engineering College (REC Chennai)",
+    "shortName": "REC Chennai",
+    "city": "Thandalam, Chennai",
+    "district": "Kanchipuram",
+    "currentImage": "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&w=900&q=80"
+  },
+  {
+    "file": "indiaColleges.ts",
+    "id": "svce-sriperumbudur",
+    "name": "Sri Venkateswara College of Engineering (SVCE)",
+    "shortName": "SVCE Sriperumbudur",
+    "city": "Sriperumbudur, Chennai",
+    "district": "Kanchipuram",
+    "currentImage": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=900&q=80"
+  },
+  {
+    "file": "indiaColleges.ts",
+    "id": "sathyabama-chennai",
+    "name": "Sathyabama Institute of Science and Technology",
+    "shortName": "Sathyabama Deemed Univ",
+    "city": "OMR, Chennai",
+    "district": "Chennai",
+    "currentImage": "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=900&q=80"
+  },
+  {
+    "file": "indiaColleges.ts",
+    "id": "psg-college-of-technology",
+    "name": "PSG College of Technology (PSG Tech)",
+    "shortName": "PSG Tech Coimbatore",
+    "city": "Peelamedu, Coimbatore",
+    "district": "Coimbatore",
+    "currentImage": "/colleges/psg-tech.jpg"
+  },
+  {
+    "file": "indiaColleges.ts",
+    "id": "coimbatore-institute-of-technology",
+    "name": "Coimbatore Institute of Technology (CIT Coimbatore)",
+    "shortName": "CIT Coimbatore",
+    "city": "Civil Aerodrome Post, Coimbatore",
+    "district": "Coimbatore",
+    "currentImage": "/colleges/cit.jpg"
+  },
+  {
+    "file": "indiaColleges.ts",
+    "id": "kumaraguru-college-of-technology",
+    "name": "Kumaraguru College of Technology (KCT Coimbatore)",
+    "shortName": "KCT Coimbatore",
+    "city": "Saravanampatti, Coimbatore",
+    "district": "Coimbatore",
+    "currentImage": "/colleges/kct.jpg"
+  },
+  {
+    "file": "indiaColleges.ts",
+    "id": "skcet-coimbatore",
+    "name": "Sri Krishna College of Engineering and Technology (SKCET)",
+    "shortName": "SKCET Coimbatore",
+    "city": "Kuniamuthur, Coimbatore",
+    "district": "Coimbatore",
+    "currentImage": "/colleges/skcet.jpg"
+  },
+  {
+    "file": "indiaColleges.ts",
+    "id": "nit-trichy",
+    "name": "National Institute of Technology Tiruchirappalli (NIT Trichy)",
+    "shortName": "NIT Trichy",
+    "city": "Tiruchirappalli",
+    "district": "Tiruchirappalli",
+    "currentImage": "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=900&q=80"
+  },
+  {
+    "file": "indiaColleges.ts",
+    "id": "sastra-deemed-university",
+    "name": "Shanmugha Arts, Science, Technology & Research Academy (SASTRA)",
+    "shortName": "SASTRA Deemed Univ",
+    "city": "Thirumalaisamudram, Thanjavur",
+    "district": "Thanjavur",
+    "currentImage": "https://images.unsplash.com/photo-1569098644584-210bcd375b59?auto=format&fit=crop&w=900&q=80"
+  },
+  {
+    "file": "indiaColleges.ts",
+    "id": "thiagarajar-college-of-engg",
+    "name": "Thiagarajar College of Engineering (TCE Madurai)",
+    "shortName": "TCE Madurai",
+    "city": "Thiruparankundram, Madurai",
+    "district": "Madurai",
+    "currentImage": "/colleges/tce-madurai.jpg"
+  },
+  {
+    "file": "indiaColleges.ts",
+    "id": "kongu-engineering-college",
+    "name": "Kongu Engineering College (KEC Perundurai)",
+    "shortName": "KEC Erode",
+    "city": "Perundurai, Erode",
+    "district": "Erode",
+    "currentImage": "/colleges/kongu.jpg"
+  },
+  {
+    "file": "indiaColleges.ts",
+    "id": "bannari-amman-institute",
+    "name": "Bannari Amman Institute of Technology (BIT Sathyamangalam)",
+    "shortName": "BIT Sathy",
+    "city": "Sathyamangalam, Erode",
+    "district": "Erode",
+    "currentImage": "/colleges/bit-sathy.jpg"
+  },
+  {
+    "file": "indiaColleges.ts",
+    "id": "gce-salem",
+    "name": "Government College of Engineering, Salem (GCE Salem)",
+    "shortName": "GCE Salem",
+    "city": "Salem",
+    "district": "Salem",
+    "currentImage": "https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?auto=format&fit=crop&w=900&q=80"
+  },
+  {
+    "file": "indiaColleges.ts",
+    "id": "sona-college-salem",
+    "name": "Sona College of Technology (Sona Salem)",
+    "shortName": "Sona College Salem",
+    "city": "Salem",
+    "district": "Salem",
+    "currentImage": "https://images.unsplash.com/photo-1569098644584-210bcd375b59?auto=format&fit=crop&w=900&q=80"
+  },
+  {
+    "file": "indiaColleges.ts",
+    "id": "national-engineering-college",
+    "name": "National Engineering College (NEC Kovilpatti)",
+    "shortName": "NEC Kovilpatti",
+    "city": "Kovilpatti, Tirunelveli Region",
+    "district": "Thoothukudi",
+    "currentImage": "https://images.unsplash.com/photo-1541829070764-84a7d30dd3f3?auto=format&fit=crop&w=900&q=80"
+  },
+  {
+    "file": "indiaColleges.ts",
+    "id": "ksr-college-of-tech",
+    "name": "K.S. Rangasamy College of Technology (KSRCT Tiruchengode)",
+    "shortName": "KSRCT Namakkal",
+    "city": "Tiruchengode, Namakkal",
+    "district": "Namakkal",
+    "currentImage": "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&w=900&q=80"
+  },
+  {
+    "file": "indiaColleges.ts",
+    "id": "m-kumarasamy-karur",
+    "name": "M. Kumarasamy College of Engineering (MKCE Karur)",
+    "shortName": "MKCE Karur",
+    "city": "Thalavapalayam, Karur",
+    "district": "Karur",
+    "currentImage": "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=900&q=80"
+  },
+  {
+    "file": "indiaColleges.ts",
+    "id": "thapar-university",
+    "name": "Thapar Institute of Engineering and Technology (TIET)",
+    "shortName": "Thapar University",
+    "city": "Patiala",
+    "district": "Patiala",
+    "currentImage": "https://images.unsplash.com/photo-1498243691581-b145c3f54a5a?auto=format&fit=crop&w=900&q=80"
+  },
+  {
+    "file": "indiaColleges.ts",
+    "id": "pes-university",
+    "name": "PES University (PESU Bengaluru)",
+    "shortName": "PES Univ Bangalore",
+    "city": "Bengaluru",
+    "district": "Bengaluru Urban",
+    "currentImage": "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=900&q=80"
+  },
+  {
+    "file": "indiaColleges.ts",
+    "id": "rv-college-of-engineering",
+    "name": "RV College of Engineering (RVCE / RV University Ecosystem)",
+    "shortName": "RVCE Bangalore",
+    "city": "Mysore Road, Bengaluru",
+    "district": "Bengaluru Urban",
+    "currentImage": "https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=900&q=80"
+  },
+  {
+    "file": "indiaColleges.ts",
+    "id": "kiit-university",
+    "name": "Kalinga Institute of Industrial Technology (KIIT)",
+    "shortName": "KIIT Bhubaneswar",
+    "city": "Bhubaneswar",
+    "district": "Khordha",
+    "currentImage": "https://images.unsplash.com/photo-1541829070764-84a7d30dd3f3?auto=format&fit=crop&w=900&q=80"
+  },
+  {
+    "file": "indiaColleges.ts",
+    "id": "shiv-nadar-university",
+    "name": "Shiv Nadar University (SNU Delhi NCR)",
+    "shortName": "Shiv Nadar Univ",
+    "city": "Greater Noida, Delhi NCR",
+    "district": "Gautam Buddha Nagar",
+    "currentImage": "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=900&q=80"
+  },
+  {
+    "file": "universities.ts",
+    "id": "ceg-anna-univ",
+    "name": "College of Engineering, Guindy (CEG Anna University)",
+    "shortName": "",
+    "city": "",
+    "district": "",
+    "currentImage": "https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=1000&q=80"
+  },
+  {
+    "file": "universities.ts",
+    "id": "psg-tech-coimbatore",
+    "name": "PSG College of Technology",
+    "shortName": "",
+    "city": "",
+    "district": "",
+    "currentImage": "https://images.unsplash.com/photo-1498243691581-b145c3f54a5a?auto=format&fit=crop&w=1000&q=80"
+  },
+  {
+    "file": "universities.ts",
+    "id": "ssn-chennai",
+    "name": "SSN College of Engineering",
+    "shortName": "",
+    "city": "",
+    "district": "",
+    "currentImage": "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&w=1000&q=80"
+  }
+]
