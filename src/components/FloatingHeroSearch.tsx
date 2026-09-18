@@ -8,12 +8,14 @@ interface FloatingHeroSearchProps {
 
 export const FloatingHeroSearch: React.FC<FloatingHeroSearchProps> = ({ onSearch }) => {
   const placeholders = [
-    'CSE colleges in Coimbatore',
-    'AI colleges in Tamil Nadu',
-    'Engineering colleges near me',
-    'Best colleges for 190+ cutoff',
-    'Colleges under ₹2 lakh fees',
-    'Autonomous colleges in Chennai'
+    'Engineering colleges in Coimbatore (TNEA)',
+    'Medical colleges in Chennai (NEET Score)',
+    'Arts & Science colleges in Tamil Nadu (B.Com / B.Sc)',
+    'Best MBBS colleges with top hospital rankings',
+    'CSE & AI colleges in Coimbatore & Chennai',
+    'Loyola, PSGCAS & MCC Arts colleges',
+    'Govt Medical Colleges in Tamil Nadu',
+    'Top Autonomous colleges with 100% placements'
   ];
 
   const [placeholderIndex, setPlaceholderIndex] = useState(0);
@@ -52,16 +54,16 @@ export const FloatingHeroSearch: React.FC<FloatingHeroSearchProps> = ({ onSearch
             </div>
             <div>
               <h3 className="text-sm sm:text-base font-black text-white tracking-wide">
-                WHAT ARE YOU LOOKING FOR?
+                DISCOVER YOUR DREAM COLLEGE
               </h3>
               <p className="text-[11px] text-slate-400 font-medium">
-                Live search 50+ verified Tamil Nadu engineering colleges & branches
+                Live search 200+ verified Engineering, Medical (NEET), and Arts & Science colleges in Tamil Nadu
               </p>
             </div>
           </div>
 
           <span className="hidden sm:inline-flex items-center gap-1 text-[10px] font-black uppercase px-2.5 py-1 rounded-full bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">
-            <Flame className="w-3 h-3 text-cyan-400" /> TNEA 2026 Ready
+            <Flame className="w-3 h-3 text-cyan-400" /> Multi-Stream 2026
           </span>
         </div>
 
@@ -89,9 +91,21 @@ export const FloatingHeroSearch: React.FC<FloatingHeroSearchProps> = ({ onSearch
         {/* Popular Tags */}
         <div className="flex flex-wrap items-center gap-2 text-xs">
           <span className="text-slate-400 font-extrabold uppercase text-[10px] tracking-wider">
-            Popular:
+            Popular Streams:
           </span>
-          {['CSE', 'AI & ML', 'ECE', 'TNEA', 'Coimbatore', 'Chennai', 'PSG Tech', 'SSN', 'CIT'].map((tag) => (
+          {[
+            'Engineering', 
+            'Medical (NEET)', 
+            'Arts & Science', 
+            'MBBS', 
+            'B.Com', 
+            'CSE & AI', 
+            'Coimbatore', 
+            'Chennai', 
+            'PSG Tech', 
+            'MMC Chennai',
+            'Loyola College'
+          ].map((tag) => (
             <button
               key={tag}
               type="button"
@@ -102,7 +116,6 @@ export const FloatingHeroSearch: React.FC<FloatingHeroSearchProps> = ({ onSearch
             </button>
           ))}
         </div>
-
       </div>
     </div>
   );

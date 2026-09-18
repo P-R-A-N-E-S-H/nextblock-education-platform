@@ -21,6 +21,7 @@ import {
 } from 'lucide-react';
 import { allTNCollegesData, TNCollege } from '../../data/indexTNColleges';
 import { useApp } from '../../context/AppContext';
+import { getStreamFallbackImage } from '../../utils/helpers';
 
 interface TNPlacementSalaryArenaProps {
   onSelectCollege: (college: TNCollege) => void;
@@ -290,6 +291,9 @@ export const TNPlacementSalaryArena: React.FC<TNPlacementSalaryArenaProps> = ({
                         <img
                           src={college.image}
                           alt={college.name}
+                          onError={(e) => {
+                            (e.target as HTMLImageElement).src = getStreamFallbackImage(college.stream);
+                          }}
                           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-80 group-hover:opacity-100"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent" />

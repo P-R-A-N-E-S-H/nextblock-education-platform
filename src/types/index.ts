@@ -1,13 +1,41 @@
+export type CollegeStream = 'Engineering' | 'Medical' | 'Arts & Science' | 'Law' | 'Management' | 'Architecture' | 'All';
+export type AcademicStream = 'engineering' | 'medical' | 'arts-science' | 'all';
+
 export interface TNCollege {
   id: string;
   name: string;
   shortName: string;
+  stream?: 'Engineering' | 'Medical' | 'Arts & Science' | 'Law' | 'Management' | 'Architecture' | string;
+  streams?: string[];
   tneaCode?: string;
-  institutionType: 'Government / University Campus' | 'Government Aided Autonomous' | 'Deemed-to-be University' | 'Self-Financing Autonomous' | 'Affiliated Engineering College';
-  category: 'Top Tier Autonomous' | 'Deemed University' | 'Government Premier' | 'Coimbatore Landmark' | 'Chennai Landmark' | 'Regional Premier';
+  neetCutoffGeneral?: string;
+  meritCutoffPercentage?: string;
+  institutionType: 
+    | 'Government / University Campus' 
+    | 'Government Aided Autonomous' 
+    | 'Deemed-to-be University' 
+    | 'Self-Financing Autonomous' 
+    | 'Affiliated Engineering College'
+    | 'Government Medical College'
+    | 'Private Medical College'
+    | 'Institute of National Importance'
+    | 'Government Arts College'
+    | 'Government Aided Arts College'
+    | 'Self-Financing Arts College'
+    | string;
+  category: 
+    | 'Top Tier Autonomous' 
+    | 'Deemed University' 
+    | 'Government Premier' 
+    | 'Coimbatore Landmark' 
+    | 'Chennai Landmark' 
+    | 'Regional Premier'
+    | 'Premier Medical Institute'
+    | 'Top Tier Arts & Science'
+    | string;
   city: string;
   district: string;
-  zone: 'Chennai & Northern TN' | 'Coimbatore & Western TN' | 'Central Tamil Nadu' | 'Southern Tamil Nadu';
+  zone: 'Chennai & Northern TN' | 'Coimbatore & Western TN' | 'Central Tamil Nadu' | 'Southern Tamil Nadu' | 'Puducherry & Environs' | string;
   establishedYear: number;
   nirfRank?: string;
   naacGrade?: string;

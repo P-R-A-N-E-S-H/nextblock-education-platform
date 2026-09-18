@@ -10,25 +10,32 @@ import {
   Scale, 
   Sparkles,
   TrendingUp,
-  CheckCircle2
+  CheckCircle2,
+  Cpu,
+  Stethoscope,
+  Palette,
+  Layers
 } from 'lucide-react';
 import { useApp } from '../context/AppContext';
-import { TNCollege } from '../data/tamilNaduColleges';
+import { TNCollege, AcademicStream } from '../types';
+import { getStreamFallbackImage } from '../utils/helpers';
 
 interface CityHubPageProps {
   onOpenBooking?: () => void;
 }
 
 const CITY_HUBS = [
-  { id: 'Coimbatore', name: 'Coimbatore', tagline: 'Manchester of South India • Premier Engineering & Industrial Hub', count: '18+ Top Colleges' },
-  { id: 'Chennai', name: 'Chennai Metro', tagline: 'Detroit of Asia • IT Corridor & State Capital University Campuses', count: '14+ Top Colleges' },
-  { id: 'Madurai', name: 'Madurai', tagline: 'Cultural Capital & Southern Engineering Epicenter', count: '6+ Top Colleges' },
-  { id: 'Salem', name: 'Salem', tagline: 'Western Steel & Manufacturing Technical Belt', count: '5+ Top Colleges' },
-  { id: 'Erode', name: 'Erode', tagline: 'Textile Valley & Autonomous Engineering Landmarks', count: '6+ Top Colleges' },
-  { id: 'Tiruchirappalli', name: 'Tiruchirappalli (Trichy)', tagline: 'Central Tamil Nadu Technical & Industrial Base', count: '5+ Top Colleges' },
-  { id: 'Vellore', name: 'Vellore', tagline: 'Northern Tamil Nadu Global University Cluster', count: '4+ Top Colleges' },
-  { id: 'Tiruppur', name: 'Tiruppur', tagline: 'Dollar City Textile Engineering & Emerging Tech Hub', count: '4+ Top Colleges' },
-  { id: 'Namakkal', name: 'Namakkal', tagline: 'Transport & Autonomous Engineering Institutions', count: '5+ Top Colleges' }
+  { id: 'Coimbatore', name: 'Coimbatore', tagline: 'Manchester of South India • Premier Engineering, Medical & Arts Hub', count: '45+ Top Colleges' },
+  { id: 'Chennai', name: 'Chennai Metro', tagline: 'Detroit of Asia • IT Corridor, Apex Medical & State Capital Universities', count: '60+ Top Colleges' },
+  { id: 'Madurai', name: 'Madurai', tagline: 'Cultural Capital • Southern Engineering, Medical & Heritage Arts Epicenter', count: '20+ Top Colleges' },
+  { id: 'Salem', name: 'Salem', tagline: 'Western Steel Belt • Top Govt Medical & Autonomous Technical Colleges', count: '15+ Top Colleges' },
+  { id: 'Erode', name: 'Erode', tagline: 'Textile Valley • Autonomous Engineering & Science Landmarks', count: '12+ Top Colleges' },
+  { id: 'Tiruchirappalli', name: 'Tiruchirappalli (Trichy)', tagline: 'Central Tamil Nadu Technical, Medical & Historic Arts Base', count: '18+ Top Colleges' },
+  { id: 'Vellore', name: 'Vellore', tagline: 'Northern Tamil Nadu Global University, CMC & Tech Cluster', count: '10+ Top Colleges' },
+  { id: 'Tiruppur', name: 'Tiruppur', tagline: 'Dollar City Textile Engineering, Design & Emerging Colleges', count: '8+ Top Colleges' },
+  { id: 'Namakkal', name: 'Namakkal', tagline: 'Transport, Poultry & Autonomous Engineering Institutions', count: '10+ Top Colleges' },
+  { id: 'Tirunelveli', name: 'Tirunelveli', tagline: 'South TN Medical, University & Engineering Hub', count: '12+ Top Colleges' },
+  { id: 'Thanjavur', name: 'Thanjavur', tagline: 'Delta Region Heritage Medical, Deemed & Arts Campuses', count: '8+ Top Colleges' }
 ];
 
 export const CityHubPage: React.FC<CityHubPageProps> = ({ onOpenBooking }) => {
@@ -44,16 +51,22 @@ export const CityHubPage: React.FC<CityHubPageProps> = ({ onOpenBooking }) => {
   } = useApp();
 
   const [activeCityId, setActiveCityId] = useState<string>(selectedCity || 'Coimbatore');
+  const [selectedStream, setSelectedStream] = useState<AcademicStream | 'all'>('all');
 
   const activeHub = CITY_HUBS.find(h => h.id.toLowerCase() === activeCityId.toLowerCase()) || CITY_HUBS[0];
 
   const cityColleges = useMemo(() => {
-    return colleges.filter(c => 
-      c.district.toLowerCase().includes(activeCityId.toLowerCase()) ||
-      c.city.toLowerCase().includes(activeCityId.toLowerCase()) ||
-      (activeCityId === 'Coimbatore' && c.isCoimbatoreHub)
-    );
-  }, [colleges, activeCityId]);
+    return colleges.filter(c => {
+      const matchesCity = 
+        c.district.toLowerCase().includes(activeCityId.toLowerCase()) ||
+        c.city.toLowerCase().includes(activeCityId.toLowerCase()) ||
+        (activeCityId === 'Coimbatore' && c.isCoimbatoreHub);
+      
+      const matchesStream = selectedStream === 'all' || c.stream === selectedStream;
+
+      return matchesCity && matchesStream;
+    });
+  }, [colleges, activeCityId, selectedStream]);
 
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100 pt-20 pb-24">
@@ -63,13 +76,13 @@ export const CityHubPage: React.FC<CityHubPageProps> = ({ onOpenBooking }) => {
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row md:items-end justify-between gap-6">
           <div>
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 text-xs font-black uppercase tracking-wider mb-3">
-              <MapPin className="w-4 h-4" /> Regional Engineering Institutions
+              <MapPin className="w-4 h-4" /> Regional Multi-Stream Hub
             </div>
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-white">
-              Engineering Colleges in {activeHub.name}
+              Colleges in {activeHub.name}
             </h1>
             <p className="text-sm sm:text-base text-slate-300 mt-2 max-w-2xl leading-relaxed">
-              {activeHub.tagline}. Verified cutoffs, government-regulated fees, and top recruiters in this regional zone.
+              {activeHub.tagline}. Engineering, Medical & Arts colleges with verified cutoffs and official fees.
             </p>
           </div>
 
@@ -114,30 +127,78 @@ export const CityHubPage: React.FC<CityHubPageProps> = ({ onOpenBooking }) => {
           </div>
         </div>
 
+        {/* Stream Filter Pills */}
+        <div className="flex flex-wrap items-center gap-2">
+          <button
+            onClick={() => setSelectedStream('all')}
+            className={`px-4 py-2 rounded-xl text-xs font-black transition-all flex items-center gap-2 border ${
+              selectedStream === 'all'
+                ? 'bg-blue-600 text-white border-blue-500 shadow-md'
+                : 'bg-slate-900 text-slate-300 hover:bg-slate-800 border-slate-800'
+            }`}
+          >
+            <Layers className="w-3.5 h-3.5" />
+            <span>All Disciplines</span>
+          </button>
+          <button
+            onClick={() => setSelectedStream('engineering')}
+            className={`px-4 py-2 rounded-xl text-xs font-black transition-all flex items-center gap-2 border ${
+              selectedStream === 'engineering'
+                ? 'bg-cyan-600 text-white border-cyan-500 shadow-md'
+                : 'bg-slate-900 text-slate-300 hover:bg-slate-800 border-slate-800'
+            }`}
+          >
+            <Cpu className="w-3.5 h-3.5" />
+            <span>Engineering & Tech</span>
+          </button>
+          <button
+            onClick={() => setSelectedStream('medical')}
+            className={`px-4 py-2 rounded-xl text-xs font-black transition-all flex items-center gap-2 border ${
+              selectedStream === 'medical'
+                ? 'bg-emerald-600 text-white border-emerald-500 shadow-md'
+                : 'bg-slate-900 text-slate-300 hover:bg-slate-800 border-slate-800'
+            }`}
+          >
+            <Stethoscope className="w-3.5 h-3.5" />
+            <span>Medical & Healthcare</span>
+          </button>
+          <button
+            onClick={() => setSelectedStream('arts-science')}
+            className={`px-4 py-2 rounded-xl text-xs font-black transition-all flex items-center gap-2 border ${
+              selectedStream === 'arts-science'
+                ? 'bg-purple-600 text-white border-purple-500 shadow-md'
+                : 'bg-slate-900 text-slate-300 hover:bg-slate-800 border-slate-800'
+            }`}
+          >
+            <Palette className="w-3.5 h-3.5" />
+            <span>Arts, Science & Commerce</span>
+          </button>
+        </div>
+
         {/* City Stats Strip */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
           <div className="bg-slate-900 p-5 rounded-3xl border-2 border-slate-800">
             <span className="text-[10px] uppercase font-bold text-slate-400 block">Verified Colleges</span>
             <p className="text-2xl font-black text-cyan-400 mt-1">{cityColleges.length} Institutions</p>
-            <span className="text-[10px] text-slate-400">Anna Univ / Autonomous</span>
+            <span className="text-[10px] text-slate-400">Govt / Autonomous / Private</span>
           </div>
 
           <div className="bg-slate-900 p-5 rounded-3xl border-2 border-slate-800">
             <span className="text-[10px] uppercase font-bold text-slate-400 block">Highest Package</span>
-            <p className="text-2xl font-black text-emerald-400 mt-1">₹40.0 LPA</p>
-            <span className="text-[10px] text-slate-400">Top Product Drives</span>
+            <p className="text-2xl font-black text-emerald-400 mt-1">₹52.0 LPA</p>
+            <span className="text-[10px] text-slate-400">Top Recruiters & Hospital Drives</span>
           </div>
 
           <div className="bg-slate-900 p-5 rounded-3xl border-2 border-slate-800">
             <span className="text-[10px] uppercase font-bold text-slate-400 block">Average Placement CTC</span>
-            <p className="text-2xl font-black text-white mt-1">₹6.5L – ₹8.5L</p>
-            <span className="text-[10px] text-slate-400">Core & Software Mix</span>
+            <p className="text-2xl font-black text-white mt-1">₹6.5L – ₹12.5L</p>
+            <span className="text-[10px] text-slate-400">Tech, Clinical & Commerce</span>
           </div>
 
           <div className="bg-slate-900 p-5 rounded-3xl border-2 border-slate-800">
             <span className="text-[10px] uppercase font-bold text-slate-400 block">Govt Fee Waivers</span>
-            <p className="text-2xl font-black text-blue-400 mt-1">7.5% & FG</p>
-            <span className="text-[10px] text-slate-400">100% Eligible</span>
+            <p className="text-2xl font-black text-blue-400 mt-1">7.5% & FG & PMSSS</p>
+            <span className="text-[10px] text-slate-400">100% Verified Eligible</span>
           </div>
         </div>
 
@@ -159,12 +220,26 @@ export const CityHubPage: React.FC<CityHubPageProps> = ({ onOpenBooking }) => {
                     alt={college.name}
                     className="w-full h-full object-cover"
                     loading="lazy"
+                    onError={(e) => {
+                      e.currentTarget.src = getStreamFallbackImage(college.stream);
+                    }}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent" />
 
-                  <span className="absolute top-3 left-3 px-2.5 py-1 rounded-lg bg-slate-900/90 backdrop-blur-md text-[10px] font-black uppercase text-cyan-400 border border-slate-700">
-                    {college.tneaCode ? `TNEA: ${college.tneaCode}` : 'University'}
-                  </span>
+                  <div className="absolute top-3 left-3 flex items-center gap-1.5 flex-wrap">
+                    <span className={`px-2 py-0.5 rounded-md text-[10px] font-black uppercase tracking-wider ${
+                      college.stream === 'medical'
+                        ? 'bg-emerald-500/90 text-white'
+                        : college.stream === 'arts-science'
+                        ? 'bg-purple-500/90 text-white'
+                        : 'bg-blue-600/90 text-white'
+                    }`}>
+                      {college.stream === 'medical' ? 'Medical' : college.stream === 'arts-science' ? 'Arts & Sci' : 'Engineering'}
+                    </span>
+                    <span className="px-2 py-0.5 rounded-md bg-slate-900/90 backdrop-blur-md text-[10px] font-black uppercase text-cyan-400 border border-slate-700">
+                      {college.tneaCode ? `Code: ${college.tneaCode}` : college.stream === 'medical' ? 'NEET UG' : 'Merit'}
+                    </span>
+                  </div>
 
                   <div className="absolute top-3 right-3 flex items-center gap-1">
                     <button
@@ -203,8 +278,16 @@ export const CityHubPage: React.FC<CityHubPageProps> = ({ onOpenBooking }) => {
 
                     <div className="grid grid-cols-2 gap-2 mt-4 text-xs bg-slate-950 p-3 rounded-2xl border border-slate-800">
                       <div>
-                        <span className="text-[10px] uppercase font-bold text-slate-400 block">Cutoff</span>
-                        <span className="font-black text-cyan-400">{college.tneaCutoffGeneral || 'Merit'}</span>
+                        <span className="text-[10px] uppercase font-bold text-slate-400 block">
+                          {college.stream === 'medical' ? 'NEET Cutoff' : college.stream === 'arts-science' ? 'Merit Score' : 'TNEA Cutoff'}
+                        </span>
+                        <span className="font-black text-cyan-400">
+                          {college.stream === 'medical'
+                            ? (college.neetCutoffGeneral ? `${college.neetCutoffGeneral} Marks` : 'NEET UG')
+                            : college.stream === 'arts-science'
+                            ? (college.meritCutoffPercentage || '85%+ Merit')
+                            : (college.tneaCutoffGeneral || 'Merit')}
+                        </span>
                       </div>
                       <div>
                         <span className="text-[10px] uppercase font-bold text-slate-400 block">Highest CTC</span>
@@ -234,3 +317,4 @@ export const CityHubPage: React.FC<CityHubPageProps> = ({ onOpenBooking }) => {
     </div>
   );
 };
+

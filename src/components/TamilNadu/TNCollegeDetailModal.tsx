@@ -16,7 +16,8 @@ import {
   Building,
   Tag
 } from 'lucide-react';
-import { TNCollege } from '../../data/indexTNColleges';
+import { TNCollege } from '../../types';
+import { getStreamFallbackImage } from '../../utils/helpers';
 
 interface TNCollegeDetailModalProps {
   college: TNCollege | null;
@@ -55,7 +56,7 @@ export const TNCollegeDetailModal: React.FC<TNCollegeDetailModalProps> = ({
             alt={college.name}
             className="w-full h-full object-cover"
             onError={(e) => {
-              (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=1000&q=80';
+              (e.target as HTMLImageElement).src = getStreamFallbackImage(college.stream);
             }}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/60 to-black/30" />
@@ -63,6 +64,15 @@ export const TNCollegeDetailModal: React.FC<TNCollegeDetailModalProps> = ({
           {/* Bottom Info Overlay */}
           <div className="absolute bottom-6 left-6 right-6 text-white">
             <div className="flex flex-wrap items-center gap-2 mb-2">
+              <span className={`text-xs px-2.5 py-0.5 rounded-md font-black uppercase text-white shadow-xs ${
+                college.stream === 'medical'
+                  ? 'bg-emerald-600'
+                  : college.stream === 'arts-science'
+                  ? 'bg-purple-600'
+                  : 'bg-blue-600'
+              }`}>
+                {college.stream === 'medical' ? 'Medical & Healthcare' : college.stream === 'arts-science' ? 'Arts & Science' : 'Engineering & Tech'}
+              </span>
               {college.tneaCode && (
                 <span className="text-xs px-2.5 py-0.5 rounded-md bg-blue-600 font-black text-white shadow-xs">
                   TNEA Code: {college.tneaCode}
@@ -110,8 +120,16 @@ export const TNCollegeDetailModal: React.FC<TNCollegeDetailModalProps> = ({
           {/* Quick Metrics Grid */}
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
             <div className="bg-slate-50 p-3.5 rounded-2xl border-2 border-slate-200">
-              <p className="text-[10px] font-extrabold text-slate-500 uppercase">TNEA General Cutoff</p>
-              <p className="text-xs sm:text-sm font-black text-blue-700 mt-0.5 truncate">{college.tneaCutoffGeneral || 'Check Counselling'}</p>
+              <p className="text-[10px] font-extrabold text-slate-500 uppercase">
+                {college.stream === 'medical' ? 'NEET UG Cutoff' : college.stream === 'arts-science' ? 'Merit Percentage' : 'TNEA Cutoff'}
+              </p>
+              <p className="text-xs sm:text-sm font-black text-blue-700 mt-0.5 truncate">
+                {college.stream === 'medical'
+                  ? (college.neetCutoffGeneral ? `${college.neetCutoffGeneral} Marks` : 'NEET Counselling')
+                  : college.stream === 'arts-science'
+                  ? (college.meritCutoffPercentage || '85%+ Merit')
+                  : (college.tneaCutoffGeneral || 'Check Counselling')}
+              </p>
             </div>
 
             <div className="bg-slate-50 p-3.5 rounded-2xl border-2 border-slate-200">

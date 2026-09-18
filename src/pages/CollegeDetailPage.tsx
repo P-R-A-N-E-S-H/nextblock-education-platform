@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { 
   ArrowLeft, 
   MapPin, 
@@ -17,14 +17,18 @@ import {
   Calendar, 
   Home as HomeIcon, 
   Layers, 
-  Sparkles,
-  DollarSign,
-  Share2,
-  FileCheck2,
-  BookOpen
+  Sparkles, 
+  DollarSign, 
+  Share2, 
+  FileCheck2, 
+  BookOpen, 
+  ChevronRight,
+  Stethoscope,
+  Palette
 } from 'lucide-react';
 import { useApp } from '../context/AppContext';
-import { TNCollege } from '../data/tamilNaduColleges';
+import { TNCollege } from '../types';
+import { getStreamFallbackImage } from '../utils/helpers';
 
 interface CollegeDetailPageProps {
   onOpenBooking?: () => void;
@@ -32,8 +36,8 @@ interface CollegeDetailPageProps {
 
 export const CollegeDetailPage: React.FC<CollegeDetailPageProps> = ({ onOpenBooking }) => {
   const { 
+    selectedCollegeSlug,
     colleges, 
-    selectedCollegeSlug, 
     setCurrentPublicView, 
     savedCollegeIds, 
     toggleSaveCollege, 
@@ -42,48 +46,89 @@ export const CollegeDetailPage: React.FC<CollegeDetailPageProps> = ({ onOpenBook
     addToast
   } = useApp();
 
-  const [activeTab, setActiveTab] = useState<'overview' | 'branches' | 'admissions' | 'fees' | 'placements' | 'campus' | 'contact'>('overview');
+  const [activeTab, setActiveTab] = useState<'overview' | 'branches' | 'placements' | 'admissions' | 'campus' | 'fees' | 'contact'>('overview');
 
-  // Find college by id or shortName or fallback to first
-  const college: TNCollege = colleges.find(c => c.id === selectedCollegeSlug || c.shortName.toLowerCase() === selectedCollegeSlug?.toLowerCase()) || colleges[0];
+  const college = useMemo(() => {
+    if (!selectedCollegeSlug) {
+      return colleges[0] || null;
+    }
+    return colleges.find((c) => c.id === selectedCollegeSlug) || colleges[0] || null;
+  }, [selectedCollegeSlug, colleges]);
+
+  if (!college) {
+    return (
+      <div className="min-h-screen bg-slate-950 text-white pt-24 px-4 text-center">
+        <h2 className="text-2xl font-black">College Not Found</h2>
+        <button
+          onClick={() => setCurrentPublicView('colleges')}
+          className="mt-4 px-6 py-2 rounded-xl bg-blue-600 text-white text-xs font-bold"
+        >
+          Return to Directory
+        </button>
+      </div>
+    );
+  }
 
   const isSaved = savedCollegeIds.includes(college.id);
   const isCompared = comparisonCollegeIds.includes(college.id);
 
   const handleShare = () => {
-    if (navigator.clipboard) {
+    if (navigator.share) {
+      navigator.share({
+        title: `${college.name} - NEXTBLOCK`,
+        text: `Check out cutoff, fee structure, and placements for ${college.name} on NEXTBLOCK.`,
+        url: window.location.href
+      }).catch(() => {});
+    } else {
       navigator.clipboard.writeText(window.location.href);
       addToast({
         id: Date.now().toString(),
-        title: 'Link Copied to Clipboard 📋',
-        message: `Shareable link for ${college.name} copied.`,
-        type: 'info'
+        title: 'Link Copied! 📋',
+        message: 'Shareable link copied to clipboard.',
+        type: 'success'
       });
     }
   };
 
+  const isMedical = (college.stream || '').toLowerCase().includes('medical');
+  const isArts = (college.stream || '').toLowerCase().includes('arts') || (college.stream || '').toLowerCase().includes('science');
+
   const tabs = [
     { id: 'overview', label: 'Overview', icon: BookOpen },
-    { id: 'branches', label: 'Engineering Branches', icon: Layers },
-    { id: 'admissions', label: 'TNEA & Admissions', icon: GraduationCap },
+    { 
+      id: 'branches', 
+      label: isMedical ? 'Medical Courses & Degrees' : isArts ? 'Offered Degree Programs' : 'Engineering Branches', 
+      icon: isMedical ? Stethoscope : isArts ? Palette : Layers 
+    },
+    { 
+      id: 'admissions', 
+      label: isMedical ? 'NEET UG & Admissions' : isArts ? 'Merit & Admissions' : 'TNEA & Admissions', 
+      icon: GraduationCap 
+    },
     { id: 'fees', label: 'Fees & Scholarships', icon: DollarSign },
-    { id: 'placements', label: 'Placements', icon: Briefcase },
+    { id: 'placements', label: isMedical ? 'Clinical & Hospital Practice' : 'Placements', icon: Briefcase },
     { id: 'campus', label: 'Hostel & Campus', icon: HomeIcon },
     { id: 'contact', label: 'Contact & Official Links', icon: Phone }
   ];
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 pt-20 pb-24">
+    <div className="min-h-screen bg-slate-950 text-slate-100 pt-20 pb-24 selection:bg-blue-600 selection:text-white">
       
-      {/* Back to Directory Bar */}
+      {/* Top Breadcrumb & Quick Action Bar */}
       <div className="bg-slate-900/60 border-b border-slate-800/80 px-4 sm:px-6 lg:px-8 py-3">
-        <div className="max-w-7xl mx-auto flex items-center justify-between">
-          <button
-            onClick={() => setCurrentPublicView('colleges')}
-            className="inline-flex items-center gap-2 text-xs font-black text-cyan-400 hover:text-cyan-300 transition-colors"
-          >
-            <ArrowLeft className="w-4 h-4" /> Back to College Directory
-          </button>
+        <div className="max-w-7xl mx-auto flex items-center justify-between text-xs">
+          <div className="flex items-center gap-2 text-slate-400">
+            <button
+              onClick={() => setCurrentPublicView('colleges')}
+              className="hover:text-cyan-400 font-medium transition-colors"
+            >
+              Colleges Directory
+            </button>
+            <ChevronRight className="w-3.5 h-3.5 text-slate-600" />
+            <span className="font-semibold text-slate-400">{college.stream || 'College'}</span>
+            <ChevronRight className="w-3.5 h-3.5 text-slate-600" />
+            <span className="text-white font-bold truncate max-w-xs sm:max-w-md">{college.name}</span>
+          </div>
 
           <div className="flex items-center gap-2">
             <button
@@ -114,7 +159,10 @@ export const CollegeDetailPage: React.FC<CollegeDetailPageProps> = ({ onOpenBook
           <img
             src={college.image}
             alt={college.name}
-            className="w-full h-full object-cover opacity-20 filter blur-sm"
+            onError={(e) => {
+              e.currentTarget.src = getStreamFallbackImage(college.stream);
+            }}
+            className="w-full h-full object-cover opacity-25 filter blur-sm"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/80 to-slate-950/50" />
         </div>
@@ -126,7 +174,7 @@ export const CollegeDetailPage: React.FC<CollegeDetailPageProps> = ({ onOpenBook
             <div className="space-y-4 max-w-4xl">
               <div className="flex flex-wrap items-center gap-2">
                 <span className="px-3 py-1 rounded-full bg-blue-600/20 text-cyan-300 text-xs font-black uppercase tracking-wider border border-blue-500/30">
-                  {college.institutionType}
+                  {college.stream || 'Engineering'} • {college.institutionType}
                 </span>
                 {college.tneaCode && (
                   <span className="px-3 py-1 rounded-full bg-slate-900 text-cyan-400 font-mono text-xs font-black border border-cyan-500/30">
@@ -243,15 +291,25 @@ export const CollegeDetailPage: React.FC<CollegeDetailPageProps> = ({ onOpenBook
             {/* Key Statistical Grid */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               <div className="bg-slate-900 p-5 rounded-3xl border-2 border-slate-800">
-                <span className="text-[10px] uppercase font-bold text-slate-400 block">General Cutoff Closing</span>
-                <p className="text-2xl font-black text-cyan-400 mt-1">{college.tneaCutoffGeneral || 'Entrance / Merit'}</p>
-                <span className="text-[10px] text-slate-400 mt-1 block">TNEA Open Category (OC)</span>
+                <span className="text-[10px] uppercase font-bold text-slate-400 block">
+                  {college.stream === 'Medical' ? 'NEET UG Cutoff' : college.stream === 'Arts & Science' ? '12th Board Cutoff' : 'TNEA Cutoff'}
+                </span>
+                <p className="text-xl sm:text-2xl font-black text-cyan-400 mt-1 truncate">
+                  {college.stream === 'Medical' 
+                    ? (college.neetCutoffGeneral || 'NEET Merit') 
+                    : college.stream === 'Arts & Science' 
+                    ? (college.meritCutoffPercentage || '85% – 98%') 
+                    : (college.tneaCutoffGeneral || 'Entrance / Merit')}
+                </p>
+                <span className="text-[10px] text-slate-400 mt-1 block">
+                  {college.stream === 'Medical' ? 'NEET State / Deemed Quota' : college.stream === 'Arts & Science' ? 'Merit Basis' : 'TNEA Open Category (OC)'}
+                </span>
               </div>
 
               <div className="bg-slate-900 p-5 rounded-3xl border-2 border-slate-800">
                 <span className="text-[10px] uppercase font-bold text-slate-400 block">Highest Package</span>
                 <p className="text-2xl font-black text-emerald-400 mt-1">{college.placements.highestPackage}</p>
-                <span className="text-[10px] text-slate-400 mt-1 block">Top Product Recruiter</span>
+                <span className="text-[10px] text-slate-400 mt-1 block">Top Recruiter / Residency</span>
               </div>
 
               <div className="bg-slate-900 p-5 rounded-3xl border-2 border-slate-800">
@@ -270,30 +328,52 @@ export const CollegeDetailPage: React.FC<CollegeDetailPageProps> = ({ onOpenBook
             {/* Accreditation & Quality Badges */}
             <div className="bg-slate-900 p-6 rounded-3xl border-2 border-slate-800 space-y-4">
               <h3 className="text-sm font-black uppercase tracking-wider text-slate-400">
-                Accreditations & Government Approvals
+                Accreditations & Regulatory Approvals
               </h3>
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs font-bold">
                 <div className="bg-slate-950 p-4 rounded-2xl border border-slate-800 flex items-center gap-3">
                   <CheckCircle2 className="w-5 h-5 text-emerald-400 flex-shrink-0" />
                   <div>
-                    <span className="text-white block font-black">AICTE & Anna University</span>
-                    <span className="text-[11px] text-slate-400">Approved Technical Institution</span>
+                    <span className="text-white block font-black">
+                      {isMedical 
+                        ? 'NMC & Dr. M.G.R. Medical Univ' 
+                        : isArts 
+                        ? 'UGC & State University' 
+                        : 'AICTE & Anna University'}
+                    </span>
+                    <span className="text-[11px] text-slate-400">
+                      {isMedical 
+                        ? 'Approved Medical College & Hospital' 
+                        : isArts 
+                        ? 'Recognized Arts & Science Campus' 
+                        : 'Approved Technical Institution'}
+                    </span>
                   </div>
                 </div>
 
                 <div className="bg-slate-950 p-4 rounded-2xl border border-slate-800 flex items-center gap-3">
                   <CheckCircle2 className="w-5 h-5 text-cyan-400 flex-shrink-0" />
                   <div>
-                    <span className="text-white block font-black">{college.naacGrade || 'NAAC Accredited'}</span>
-                    <span className="text-[11px] text-slate-400">National Assessment Council</span>
+                    <span className="text-white block font-black">{college.naacGrade || 'NAAC Accredited Grade A'}</span>
+                    <span className="text-[11px] text-slate-400">National Assessment & Accreditation</span>
                   </div>
                 </div>
 
                 <div className="bg-slate-950 p-4 rounded-2xl border border-slate-800 flex items-center gap-3">
                   <CheckCircle2 className="w-5 h-5 text-amber-400 flex-shrink-0" />
                   <div>
-                    <span className="text-white block font-black">{college.nbaAccredited ? 'NBA Tier-1 Accredited' : 'Eligible Departments'}</span>
-                    <span className="text-[11px] text-slate-400">Washington Accord Global Recognition</span>
+                    <span className="text-white block font-black">
+                      {isMedical 
+                        ? 'NABH / ISO Accredited Hospital' 
+                        : college.nbaAccredited 
+                        ? 'NBA Tier-1 Accredited' 
+                        : 'Autonomous Certified'}
+                    </span>
+                    <span className="text-[11px] text-slate-400">
+                      {isMedical 
+                        ? 'Tertiary Healthcare Standards' 
+                        : 'Washington Accord / Global Standards'}
+                    </span>
                   </div>
                 </div>
               </div>
@@ -301,32 +381,51 @@ export const CollegeDetailPage: React.FC<CollegeDetailPageProps> = ({ onOpenBook
           </div>
         )}
 
-        {/* 2. BRANCHES TAB */}
+        {/* 2. BRANCHES & COURSES TAB */}
         {activeTab === 'branches' && (
           <div className="space-y-6 animate-in fade-in duration-200">
             <div className="bg-slate-900 p-6 sm:p-8 rounded-3xl border-2 border-slate-800 space-y-4">
               <div>
-                <h2 className="text-xl font-black text-white">Undergraduate Engineering Branches (B.E / B.Tech)</h2>
-                <p className="text-xs text-slate-400 mt-1">Verified seat allotment programs for 4-year degree studies.</p>
+                <h2 className="text-xl font-black text-white">
+                  {isMedical 
+                    ? 'Medical, Healthcare & Clinical Degrees' 
+                    : isArts 
+                    ? 'Undergraduate & Postgraduate Degree Programs' 
+                    : 'Undergraduate Engineering Branches (B.E / B.Tech)'}
+                </h2>
+                <p className="text-xs text-slate-400 mt-1">
+                  Verified seat allotment programs across departments at {college.shortName}.
+                </p>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 pt-2">
-                {college.allBranches.map((branch, idx) => (
-                  <div
-                    key={idx}
-                    className="bg-slate-950 p-4 rounded-2xl border border-slate-800 flex items-center justify-between gap-3 text-xs"
-                  >
-                    <div className="flex items-center gap-3">
-                      <span className="w-7 h-7 rounded-xl bg-blue-600/20 text-cyan-400 font-mono font-black flex items-center justify-center text-[10px]">
-                        {idx + 1}
+                {college.allBranches.map((branch: string, idx: number) => {
+                  let duration = '4 Years';
+                  const bLower = branch.toLowerCase();
+                  if (bLower.includes('mbbs')) duration = '5.5 Years (Inc. Internship)';
+                  else if (bLower.includes('bds')) duration = '5 Years';
+                  else if (bLower.includes('pharm.d')) duration = '6 Years';
+                  else if (bLower.includes('b.pharm') || bLower.includes('b.tech') || bLower.includes('b.e')) duration = '4 Years';
+                  else if (bLower.includes('b.com') || bLower.includes('b.sc') || bLower.includes('bca') || bLower.includes('bba') || bLower.includes('b.a')) duration = '3 Years';
+                  else if (bLower.includes('md') || bLower.includes('ms') || bLower.includes('m.tech') || bLower.includes('m.sc')) duration = '2 - 3 Years (PG)';
+
+                  return (
+                    <div
+                      key={idx}
+                      className="bg-slate-950 p-4 rounded-2xl border border-slate-800 flex items-center justify-between gap-3 text-xs"
+                    >
+                      <div className="flex items-center gap-3">
+                        <span className="w-7 h-7 rounded-xl bg-blue-600/20 text-cyan-400 font-mono font-black flex items-center justify-center text-[10px]">
+                          {idx + 1}
+                        </span>
+                        <span className="font-bold text-white">{branch}</span>
+                      </div>
+                      <span className="text-[10px] px-2 py-0.5 rounded bg-slate-800 text-cyan-300 font-bold border border-slate-700 shrink-0">
+                        {duration}
                       </span>
-                      <span className="font-bold text-white">{branch}</span>
                     </div>
-                    <span className="text-[10px] px-2 py-0.5 rounded bg-slate-800 text-cyan-300 font-bold border border-slate-700">
-                      4 Years
-                    </span>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             </div>
           </div>
@@ -337,49 +436,87 @@ export const CollegeDetailPage: React.FC<CollegeDetailPageProps> = ({ onOpenBook
           <div className="space-y-6 animate-in fade-in duration-200">
             <div className="bg-slate-900 p-6 sm:p-8 rounded-3xl border-2 border-slate-800 space-y-6">
               <div>
-                <h2 className="text-xl font-black text-white">Admission Pathways & TNEA Cutoffs</h2>
-                <p className="text-xs text-slate-400 mt-1">How seats are allotted at {college.shortName} through official single window counselling and quotas.</p>
+                <h2 className="text-xl font-black text-white">
+                  {isMedical 
+                    ? 'NEET Counselling & Admission Process' 
+                    : isArts 
+                    ? '12th Board Merit Admission Pathways' 
+                    : 'TNEA Single Window & Admission Pathways'}
+                </h2>
+                <p className="text-xs text-slate-400 mt-1">
+                  How seats are allotted at {college.shortName} through official single window counselling, merit & entrance.
+                </p>
               </div>
 
               {/* Admission Routes Grid */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {college.admissionRoutes.map((route, idx) => (
+                {college.admissionRoutes.map((route: string, idx: number) => (
                   <div key={idx} className="bg-slate-950 p-4 rounded-2xl border border-slate-800 text-xs space-y-1">
-                    <span className="text-[10px] uppercase font-bold text-cyan-400 block">Admission Route #{idx + 1}</span>
+                    <span className="text-[10px] uppercase font-bold text-cyan-400 block">Admission Pathway #{idx + 1}</span>
                     <h4 className="font-black text-white text-sm">{route}</h4>
-                    <p className="text-slate-400 text-[11px]">Direct application via official Directorate of Technical Education (DoTE) or university portal.</p>
+                    <p className="text-slate-400 text-[11px]">
+                      {isMedical 
+                        ? 'Direct application via TN Medical Selection Committee (DME) or MCC AIQ.' 
+                        : isArts 
+                        ? 'Direct application via university admission portal & 12th board merit list.' 
+                        : 'Direct application via official Directorate of Technical Education (DoTE) / TNEA portal.'}
+                    </p>
                   </div>
                 ))}
               </div>
 
-              {/* TNEA Estimated Cutoff Breakdown */}
+              {/* Dynamic Estimated Cutoff Breakdown */}
               <div className="bg-slate-950 p-5 rounded-2xl border border-slate-800 space-y-3">
                 <h3 className="text-sm font-black text-white uppercase tracking-wider flex items-center justify-between">
-                  <span>Estimated Cutoff Range by Community Category</span>
-                  <span className="text-[10px] text-cyan-400 font-mono">Max 200.00</span>
+                  <span>
+                    {isMedical 
+                      ? 'Estimated NEET UG Cutoff Marks by Community Category' 
+                      : isArts 
+                      ? 'Estimated 12th Board Cutoff Percentage by Category' 
+                      : 'Estimated TNEA PCM Cutoff Score by Community Category'}
+                  </span>
+                  <span className="text-[10px] text-cyan-400 font-mono">
+                    {isMedical ? 'Max 720 Marks' : isArts ? 'Max 100%' : 'Max 200.00'}
+                  </span>
                 </h3>
 
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
                   <div className="bg-slate-900 p-3 rounded-xl border border-slate-800">
                     <span className="text-[10px] uppercase text-slate-400 font-bold block">Open Category (OC)</span>
-                    <span className="font-black text-white text-sm">{college.tneaCutoffGeneral || '190.0+'}</span>
+                    <span className="font-black text-white text-sm">
+                      {isMedical 
+                        ? (college.neetCutoffGeneral ? `${college.neetCutoffGeneral} Marks` : '620+ Marks') 
+                        : isArts 
+                        ? (college.meritCutoffPercentage || '95%+ Merit') 
+                        : (college.tneaCutoffGeneral || '192.0+')}
+                    </span>
                   </div>
                   <div className="bg-slate-900 p-3 rounded-xl border border-slate-800">
                     <span className="text-[10px] uppercase text-slate-400 font-bold block">Backward Class (BC)</span>
-                    <span className="font-black text-cyan-400 text-sm">188.0 – 195.0</span>
+                    <span className="font-black text-cyan-400 text-sm">
+                      {isMedical 
+                        ? (college.neetCutoffGeneral ? `${parseInt(college.neetCutoffGeneral) - 15} – ${college.neetCutoffGeneral}` : '590 – 620') 
+                        : isArts 
+                        ? '90% – 95%' 
+                        : '188.0 – 195.0'}
+                    </span>
                   </div>
                   <div className="bg-slate-900 p-3 rounded-xl border border-slate-800">
                     <span className="text-[10px] uppercase text-slate-400 font-bold block">MBC / DNC</span>
-                    <span className="font-black text-indigo-400 text-sm">182.0 – 192.0</span>
+                    <span className="font-black text-indigo-400 text-sm">
+                      {isMedical ? '560 – 590 Marks' : isArts ? '85% – 90%' : '182.0 – 192.0'}
+                    </span>
                   </div>
                   <div className="bg-slate-900 p-3 rounded-xl border border-slate-800">
                     <span className="text-[10px] uppercase text-slate-400 font-bold block">SC / SCA / ST</span>
-                    <span className="font-black text-emerald-400 text-sm">165.0 – 185.0</span>
+                    <span className="font-black text-emerald-400 text-sm">
+                      {isMedical ? '480 – 540 Marks' : isArts ? '75% – 85%' : '165.0 – 185.0'}
+                    </span>
                   </div>
                 </div>
 
                 <p className="text-[11px] text-slate-500 italic pt-1">
-                  * Cutoff benchmarks fluctuate annually based on applicant PCM distribution and seat demand.
+                  * Cutoffs fluctuate annually based on candidate performance, reservation rosters, and seat availability.
                 </p>
               </div>
             </div>
@@ -487,7 +624,7 @@ export const CollegeDetailPage: React.FC<CollegeDetailPageProps> = ({ onOpenBook
                   Key Visiting Recruiters
                 </h3>
                 <div className="flex flex-wrap gap-2">
-                  {college.placements.topRecruiters.map((recruiter, i) => (
+                  {college.placements.topRecruiters.map((recruiter: string, i: number) => (
                     <span
                       key={i}
                       className="px-4 py-2 rounded-xl bg-slate-950 border border-slate-800 text-xs font-bold text-slate-200"

@@ -19,6 +19,7 @@ import {
 } from 'lucide-react';
 import { useApp } from '../context/AppContext';
 import { TNCollege } from '../types';
+import { getStreamFallbackImage } from '../utils/helpers';
 
 interface CollegeComparisonPageProps {
   onOpenBooking?: () => void;
@@ -129,13 +130,13 @@ export const CollegeComparisonPage: React.FC<CollegeComparisonPageProps> = ({ on
         
         {/* Empty State */}
         {selectedColleges.length === 0 ? (
-          <div className="bg-slate-900 rounded-3xl p-12 text-center border-2 border-slate-800 space-y-4 max-w-2xl mx-auto my-12">
+          <div className="bg-slate-900 rounded-3xl p-12 sm:p-16 text-center border-2 border-slate-800 space-y-4 max-w-2xl mx-auto my-12">
             <div className="w-16 h-16 rounded-2xl bg-blue-600/20 text-cyan-400 flex items-center justify-center mx-auto">
               <Scale className="w-8 h-8" />
             </div>
             <h3 className="text-xl font-black text-white">No Colleges Selected for Comparison</h3>
-            <p className="text-slate-400 text-sm">
-              Select 2 to 4 colleges from the college directory to view their cutoffs, fee structures, and placement records side-by-side.
+            <p className="text-slate-400 text-sm max-w-md mx-auto leading-relaxed">
+              Explore the Tamil Nadu college directory and click the <strong className="text-white font-black">"Compare"</strong> button on any college card to start evaluating them side-by-side.
             </p>
             <div className="pt-2">
               <button
@@ -171,6 +172,9 @@ export const CollegeComparisonPage: React.FC<CollegeComparisonPageProps> = ({ on
                                 <img
                                   src={college.image}
                                   alt={college.name}
+                                  onError={(e) => {
+                                    (e.target as HTMLImageElement).src = getStreamFallbackImage(college.stream);
+                                  }}
                                   className="w-full h-full object-cover"
                                 />
                                 <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 to-transparent" />
@@ -185,9 +189,16 @@ export const CollegeComparisonPage: React.FC<CollegeComparisonPageProps> = ({ on
                               </div>
 
                               <div>
-                                <span className="text-[10px] font-black uppercase text-cyan-400 block">
-                                  {college.tneaCode ? `TNEA: ${college.tneaCode}` : 'University Entrance'}
-                                </span>
+                                <div className="flex items-center gap-1.5 mb-1">
+                                  <span className="px-2 py-0.5 rounded text-[9px] font-black uppercase bg-blue-600/30 text-cyan-300 border border-blue-500/40">
+                                    {college.stream || 'Engineering'}
+                                  </span>
+                                  {college.tneaCode && (
+                                    <span className="text-[10px] font-mono text-cyan-400 font-bold">
+                                      TNEA: {college.tneaCode}
+                                    </span>
+                                  )}
+                                </div>
                                 <h3 
                                   onClick={() => viewCollegeDetail(college.id)}
                                   className="text-sm font-black text-white hover:text-cyan-400 transition-colors cursor-pointer mt-0.5 line-clamp-2"
@@ -272,14 +283,18 @@ export const CollegeComparisonPage: React.FC<CollegeComparisonPageProps> = ({ on
                       ))}
                     </tr>
 
-                    {/* TNEA Cutoff Range */}
+                    {/* Cutoff Range */}
                     <tr className="hover:bg-slate-800/30 bg-blue-950/20">
                       <td className="p-4 font-black text-cyan-300 bg-slate-950/50">
-                        General Cutoff Range
+                        Cutoff / Merit Standard
                       </td>
                       {selectedColleges.map((c) => (
                         <td key={c.id} className="p-4 border-l border-slate-800 font-black text-cyan-400 text-sm">
-                          {c.tneaCutoffGeneral || 'Merit / Exam'}
+                          {c.stream === 'Medical' 
+                            ? (c.neetCutoffGeneral || 'NEET Merit') 
+                            : c.stream === 'Arts & Science' 
+                            ? (c.meritCutoffPercentage || '85% – 98%') 
+                            : (c.tneaCutoffGeneral || 'Merit / Exam')}
                         </td>
                       ))}
                     </tr>

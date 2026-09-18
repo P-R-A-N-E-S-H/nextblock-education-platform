@@ -1,6 +1,7 @@
 import React from 'react';
 import { X, Bookmark, Trash2, ArrowRight, Sparkles, MapPin, DollarSign, CalendarCheck, GraduationCap } from 'lucide-react';
-import { TNCollege } from '../data/indexTNColleges';
+import { TNCollege } from '../types';
+import { getStreamFallbackImage } from '../utils/helpers';
 
 interface ShortlistDrawerProps {
   isOpen: boolean;
@@ -55,7 +56,7 @@ export const ShortlistDrawer: React.FC<ShortlistDrawerProps> = ({
               </div>
               <h4 className="text-base font-black text-slate-950 mb-1">No Colleges Shortlisted Yet</h4>
               <p className="text-xs text-slate-600 leading-relaxed max-w-xs mx-auto mb-6 font-medium">
-                Browse our Tamil Nadu college directory and click "+ Compare" or save to review your preferred options for TNEA choice filling.
+                Browse our Tamil Nadu college directory across Engineering, Medical, and Arts to review your preferred options for counseling and admissions.
               </p>
               <button
                 onClick={onClose}
@@ -77,10 +78,21 @@ export const ShortlistDrawer: React.FC<ShortlistDrawerProps> = ({
                       alt={college.name}
                       className="w-12 h-12 rounded-xl object-cover shrink-0 border border-slate-300"
                       onError={(e) => {
-                        (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=600&q=80';
+                        (e.target as HTMLImageElement).src = getStreamFallbackImage(college.stream);
                       }}
                     />
                     <div>
+                      <div className="flex items-center gap-1.5 mb-0.5">
+                        <span className={`text-[9px] px-1.5 py-0.2 rounded font-black uppercase text-white ${
+                          college.stream === 'medical'
+                            ? 'bg-emerald-600'
+                            : college.stream === 'arts-science'
+                            ? 'bg-purple-600'
+                            : 'bg-blue-600'
+                        }`}>
+                          {college.stream === 'medical' ? 'Medical' : college.stream === 'arts-science' ? 'Arts & Sci' : 'Engineering'}
+                        </span>
+                      </div>
                       <h4 className="text-sm font-black text-slate-950 line-clamp-1">{college.name}</h4>
                       <p className="text-xs text-slate-600 font-bold flex items-center gap-1 mt-0.5">
                         <MapPin className="w-3 h-3 text-blue-600" />
@@ -101,8 +113,16 @@ export const ShortlistDrawer: React.FC<ShortlistDrawerProps> = ({
 
                 <div className="grid grid-cols-2 gap-2 text-[11px] pt-2 border-t border-slate-200">
                   <div className="bg-white px-2.5 py-1.5 rounded-lg border border-slate-200">
-                    <span className="text-slate-500 font-extrabold block">TNEA Cutoff</span>
-                    <span className="font-black text-blue-700">{college.tneaCutoffGeneral || 'Check Counselling'}</span>
+                    <span className="text-slate-500 font-extrabold block">
+                      {college.stream === 'medical' ? 'NEET Cutoff' : college.stream === 'arts-science' ? 'Merit' : 'TNEA Cutoff'}
+                    </span>
+                    <span className="font-black text-blue-700 truncate block">
+                      {college.stream === 'medical'
+                        ? (college.neetCutoffGeneral ? `${college.neetCutoffGeneral} M` : 'NEET UG')
+                        : college.stream === 'arts-science'
+                        ? (college.meritCutoffPercentage || '85%+ Merit')
+                        : (college.tneaCutoffGeneral || 'Check Counselling')}
+                    </span>
                   </div>
                   <div className="bg-white px-2.5 py-1.5 rounded-lg border border-slate-200">
                     <span className="text-slate-500 font-extrabold block">Highest CTC</span>

@@ -18,21 +18,37 @@ import {
   List, 
   ExternalLink,
   ChevronDown,
-  Sparkles
+  Sparkles,
+  Stethoscope,
+  Palette,
+  Cpu,
+  Layers,
+  HeartPulse
 } from 'lucide-react';
 import { useApp } from '../context/AppContext';
 import { TNCollege, TN_DISTRICTS } from '../data/tamilNaduColleges';
+import { getStreamFallbackImage } from '../utils/helpers';
 
 interface CollegesDirectoryPageProps {
   onOpenBooking?: () => void;
 }
 
-const POPULAR_BRANCHES = [
+export type StreamCategory = 'All' | 'Engineering' | 'Medical' | 'Arts & Science';
+
+const STREAM_TABS = [
+  { id: 'All', label: 'All Disciplines', icon: Layers, countLabel: '200+ Colleges' },
+  { id: 'Engineering', label: 'Engineering & Tech', icon: Cpu, countLabel: 'B.E / B.Tech / M.Tech' },
+  { id: 'Medical', label: 'Medical & Healthcare', icon: Stethoscope, countLabel: 'MBBS / BDS / Allied' },
+  { id: 'Arts & Science', label: 'Arts, Science & Commerce', icon: Palette, countLabel: 'B.Com / B.Sc / BCA / BBA' }
+];
+
+const ENGG_BRANCHES = [
   'All Branches',
   'CSE',
   'AI & DS',
   'AI & ML',
   'Information Technology',
+  'Cyber Security',
   'ECE',
   'EEE',
   'Mechanical',
@@ -40,23 +56,77 @@ const POPULAR_BRANCHES = [
   'Mechatronics',
   'Bio-Medical',
   'Biotechnology',
-  'Civil'
+  'Civil',
+  'Chemical',
+  'Aerospace'
+];
+
+const MEDICAL_BRANCHES = [
+  'All Specializations',
+  'MBBS',
+  'BDS (Dental)',
+  'MD General Medicine',
+  'MS General Surgery',
+  'B.Pharm',
+  'Pharm.D',
+  'B.Sc Nursing',
+  'BPT (Physiotherapy)',
+  'Allied Health Sciences',
+  'Radiology & Imaging',
+  'Optometry / Dialysis'
+];
+
+const ARTS_BRANCHES = [
+  'All Degrees',
+  'B.Com (General / Corporate / PA)',
+  'B.Sc Computer Science',
+  'B.Sc Data Science / AI',
+  'BCA',
+  'BBA',
+  'B.Sc Mathematics',
+  'B.Sc Physics',
+  'B.Sc Chemistry',
+  'B.Sc Biotechnology',
+  'B.Sc Psychology',
+  'B.A Economics',
+  'B.A English Literature',
+  'B.Sc Visual Communication'
+];
+
+const ALL_BRANCHES = [
+  'All Courses & Branches',
+  'CSE / IT / AI & DS',
+  'MBBS / Medical',
+  'B.Com / Commerce & Finance',
+  'B.Sc Computer Science / BCA',
+  'BDS Dental',
+  'ECE / Electronics',
+  'Mechanical / Robotics',
+  'B.Pharm / Pharmacy',
+  'B.Sc Nursing / Allied Health',
+  'BBA / Management',
+  'Biotechnology / Bio-Medical',
+  'Economics / Arts & Humanities'
 ];
 
 const FEE_RANGES = [
   { label: 'All Fee Ranges', min: 0, max: Infinity },
-  { label: 'Below ₹1 Lakh / yr', min: 0, max: 100000 },
-  { label: '₹1L – ₹2L / yr', min: 100000, max: 200000 },
-  { label: '₹2L – ₹3L / yr', min: 200000, max: 300000 },
-  { label: '₹3L – ₹5L / yr', min: 300000, max: 500000 },
-  { label: '₹5L+ / yr (Deemed)', min: 500000, max: Infinity }
+  { label: 'Below ₹50,000 / yr (Govt Subsidized)', min: 0, max: 50000 },
+  { label: '₹50,000 – ₹1.5 Lakh / yr', min: 50000, max: 150000 },
+  { label: '₹1.5L – ₹3.0 Lakh / yr', min: 150000, max: 300000 },
+  { label: '₹3L – ₹6L / yr (SF / Private)', min: 300000, max: 600000 },
+  { label: '₹6L+ / yr (Deemed Medical/Engg)', min: 600000, max: Infinity }
 ];
 
 const COLLEGE_TYPES = [
   'All Types',
   'Government / University Campus',
+  'Government Medical College',
+  'Government Arts College',
   'Government Aided Autonomous',
   'Self-Financing Autonomous',
+  'Self-Financing Arts College',
+  'Private Medical College',
   'Deemed-to-be University',
   'Affiliated Engineering College'
 ];
@@ -72,48 +142,90 @@ export const CollegesDirectoryPage: React.FC<CollegesDirectoryPageProps> = ({ on
   } = useApp();
 
   // Search & Filter State
+  const [selectedStream, setSelectedStream] = useState<StreamCategory>('All');
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedDistrict, setSelectedDistrict] = useState('All Districts');
-  const [selectedBranch, setSelectedBranch] = useState('All Branches');
+  const [selectedBranch, setSelectedBranch] = useState('All');
   const [selectedFeeIndex, setSelectedFeeIndex] = useState(0);
   const [selectedType, setSelectedType] = useState('All Types');
   const [sortBy, setSortBy] = useState<'cutoff' | 'fees' | 'placements' | 'name'>('cutoff');
   const [viewMode, setViewMode] = useState<'grid' | 'table'>('grid');
   const [mobileFilterOpen, setMobileFilterOpen] = useState(false);
 
+  // Active branches list based on stream
+  const activeBranchList = useMemo(() => {
+    if (selectedStream === 'Engineering') return ENGG_BRANCHES;
+    if (selectedStream === 'Medical') return MEDICAL_BRANCHES;
+    if (selectedStream === 'Arts & Science') return ARTS_BRANCHES;
+    return ALL_BRANCHES;
+  }, [selectedStream]);
+
   // Filtered & Sorted Colleges
   const filteredColleges = useMemo(() => {
     return colleges.filter((college) => {
-      // 1. Search Query Match
-      if (searchQuery.trim()) {
-        const q = searchQuery.toLowerCase().trim();
-        const matchesName = college.name.toLowerCase().includes(q) || college.shortName.toLowerCase().includes(q);
-        const matchesCity = college.city.toLowerCase().includes(q) || college.district.toLowerCase().includes(q);
-        const matchesCode = college.tneaCode?.toLowerCase().includes(q);
-        const matchesBranch = college.popularBranches.some(b => b.toLowerCase().includes(q)) || 
-                              college.allBranches.some(b => b.toLowerCase().includes(q));
-        if (!matchesName && !matchesCity && !matchesCode && !matchesBranch) {
+      const colStream = (college.stream || '').toLowerCase();
+      const colStreams = (college.streams || []).map(s => s.toLowerCase());
+
+      // 1. Stream Selection Tab Filter
+      if (selectedStream !== 'All') {
+        const target = selectedStream.toLowerCase();
+        const matchesStream = colStream.includes(target) || colStreams.some(s => s.includes(target));
+        if (!matchesStream) {
           return false;
         }
       }
 
-      // 2. District Filter
+      // 2. Intelligent Search Query Matching
+      if (searchQuery.trim()) {
+        const q = searchQuery.toLowerCase().trim();
+
+        // Check if query is intent-based (e.g. "engineering", "medical", "arts", "science")
+        const isEnggIntent = ['eng', 'engineering', 'btech', 'be', 'tnea', 'tech'].some(term => q.includes(term));
+        const isMedIntent = ['med', 'medical', 'doctor', 'mbbs', 'bds', 'neet', 'pharm', 'pharmacy', 'nurs', 'nursing', 'dent', 'dental', 'hospital'].some(term => q.includes(term));
+        const isArtsIntent = ['art', 'arts', 'sci', 'science', 'comm', 'commerce', 'bcom', 'bsc', 'ba', 'bba', 'bca', 'humanities', 'literature', 'economics'].some(term => q.includes(term));
+
+        // If specific intent detected and query is short or pure category
+        if (q === 'engineering' || q === 'engg' || q === 'btech' || q === 'be') {
+          if (!colStream.includes('engineering') && !colStreams.some(s => s.includes('engineering'))) return false;
+        } else if (q === 'medical' || q === 'mbbs' || q === 'doctor' || q === 'neet' || q === 'healthcare') {
+          if (!colStream.includes('medical') && !colStreams.some(s => s.includes('medical'))) return false;
+        } else if (q === 'arts' || q === 'science' || q === 'commerce' || q === 'bcom' || q === 'arts and science') {
+          if (!colStream.includes('arts') && !colStream.includes('science') && !colStreams.some(s => s.includes('arts') || s.includes('science') || s.includes('commerce'))) return false;
+        } else {
+          // General match across fields
+          const matchesName = college.name.toLowerCase().includes(q) || college.shortName.toLowerCase().includes(q);
+          const matchesCity = college.city.toLowerCase().includes(q) || college.district.toLowerCase().includes(q);
+          const matchesCode = college.tneaCode?.toLowerCase().includes(q);
+          const matchesStreamField = colStream.includes(q) || colStreams.some(s => s.includes(q));
+          const matchesCategory = college.category.toLowerCase().includes(q) || college.institutionType.toLowerCase().includes(q);
+          const matchesBranch = college.popularBranches.some(b => b.toLowerCase().includes(q)) || 
+                                college.allBranches.some(b => b.toLowerCase().includes(q));
+          const matchesExams = college.entranceExams.some(e => e.toLowerCase().includes(q));
+
+          if (!matchesName && !matchesCity && !matchesCode && !matchesBranch && !matchesStreamField && !matchesCategory && !matchesExams) {
+            return false;
+          }
+        }
+      }
+
+      // 3. District Filter
       if (selectedDistrict !== 'All Districts') {
         if (college.district.toLowerCase() !== selectedDistrict.toLowerCase()) {
           return false;
         }
       }
 
-      // 3. Branch Filter
-      if (selectedBranch !== 'All Branches') {
-        const hasBranch = college.popularBranches.some(b => b.toLowerCase().includes(selectedBranch.toLowerCase())) ||
-                          college.allBranches.some(b => b.toLowerCase().includes(selectedBranch.toLowerCase()));
+      // 4. Branch / Course Filter
+      if (selectedBranch !== 'All' && selectedBranch !== 'All Branches' && selectedBranch !== 'All Specializations' && selectedBranch !== 'All Degrees' && selectedBranch !== 'All Courses & Branches') {
+        const cleanBranch = selectedBranch.split('(')[0].split('/')[0].trim().toLowerCase();
+        const hasBranch = college.popularBranches.some(b => b.toLowerCase().includes(cleanBranch)) ||
+                          college.allBranches.some(b => b.toLowerCase().includes(cleanBranch));
         if (!hasBranch) {
           return false;
         }
       }
 
-      // 4. Fee Filter
+      // 5. Fee Filter
       const feeRange = FEE_RANGES[selectedFeeIndex];
       if (feeRange.min > 0 || feeRange.max < Infinity) {
         if (college.tuitionValue < feeRange.min || college.tuitionValue > feeRange.max) {
@@ -121,9 +233,9 @@ export const CollegesDirectoryPage: React.FC<CollegesDirectoryPageProps> = ({ on
         }
       }
 
-      // 5. College Type Filter
+      // 6. College Type Filter
       if (selectedType !== 'All Types') {
-        if (college.institutionType !== selectedType) {
+        if (!college.institutionType.toLowerCase().includes(selectedType.toLowerCase())) {
           return false;
         }
       }
@@ -131,10 +243,21 @@ export const CollegesDirectoryPage: React.FC<CollegesDirectoryPageProps> = ({ on
       return true;
     }).sort((a, b) => {
       if (sortBy === 'cutoff') {
+        // Dynamic cutoff parsing for NEET, TNEA, or Merit %
         const getCutoffVal = (c: TNCollege) => {
-          if (!c.tneaCutoffGeneral) return 0;
-          const match = c.tneaCutoffGeneral.match(/(\d+\.?\d*)/);
-          return match ? parseFloat(match[1]) : 0;
+          if (c.stream === 'Medical' && c.neetCutoffGeneral) {
+            const match = c.neetCutoffGeneral.match(/(\d+\.?\d*)/);
+            return match ? parseFloat(match[1]) : 400;
+          }
+          if (c.stream === 'Arts & Science' && c.meritCutoffPercentage) {
+            const match = c.meritCutoffPercentage.match(/(\d+\.?\d*)/);
+            return match ? parseFloat(match[1]) * 2 : 180;
+          }
+          if (c.tneaCutoffGeneral) {
+            const match = c.tneaCutoffGeneral.match(/(\d+\.?\d*)/);
+            return match ? parseFloat(match[1]) : 0;
+          }
+          return 0;
         };
         return getCutoffVal(b) - getCutoffVal(a);
       } else if (sortBy === 'fees') {
@@ -149,17 +272,32 @@ export const CollegesDirectoryPage: React.FC<CollegesDirectoryPageProps> = ({ on
         return a.name.localeCompare(b.name);
       }
     });
-  }, [colleges, searchQuery, selectedDistrict, selectedBranch, selectedFeeIndex, selectedType, sortBy]);
+  }, [colleges, selectedStream, searchQuery, selectedDistrict, selectedBranch, selectedFeeIndex, selectedType, sortBy]);
 
   const clearAllFilters = () => {
+    setSelectedStream('All');
     setSearchQuery('');
     setSelectedDistrict('All Districts');
-    setSelectedBranch('All Branches');
+    setSelectedBranch('All');
     setSelectedFeeIndex(0);
     setSelectedType('All Types');
   };
 
-  const hasActiveFilters = searchQuery !== '' || selectedDistrict !== 'All Districts' || selectedBranch !== 'All Branches' || selectedFeeIndex !== 0 || selectedType !== 'All Types';
+  const hasActiveFilters = selectedStream !== 'All' || searchQuery !== '' || selectedDistrict !== 'All Districts' || (selectedBranch !== 'All' && selectedBranch !== 'All Branches' && selectedBranch !== 'All Specializations' && selectedBranch !== 'All Degrees') || selectedFeeIndex !== 0 || selectedType !== 'All Types';
+
+  const getStreamBadgeColor = (stream?: string) => {
+    const s = (stream || '').toLowerCase();
+    if (s.includes('medical') || s.includes('health')) return 'bg-rose-500/20 text-rose-300 border-rose-500/40';
+    if (s.includes('arts') || s.includes('science') || s.includes('commerce')) return 'bg-amber-500/20 text-amber-300 border-amber-500/40';
+    return 'bg-cyan-500/20 text-cyan-300 border-cyan-500/40';
+  };
+
+  const getStreamIcon = (stream?: string) => {
+    const s = (stream || '').toLowerCase();
+    if (s.includes('medical') || s.includes('health')) return <Stethoscope className="w-3.5 h-3.5 text-rose-400" />;
+    if (s.includes('arts') || s.includes('science') || s.includes('commerce')) return <Palette className="w-3.5 h-3.5 text-amber-400" />;
+    return <Cpu className="w-3.5 h-3.5 text-cyan-400" />;
+  };
 
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100 pt-20 pb-24">
@@ -167,16 +305,17 @@ export const CollegesDirectoryPage: React.FC<CollegesDirectoryPageProps> = ({ on
       {/* Top Banner Header */}
       <div className="bg-gradient-to-b from-slate-900 via-slate-900/90 to-slate-950 border-b border-slate-800/80 px-4 sm:px-6 lg:px-8 py-10">
         <div className="max-w-7xl mx-auto">
+          
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
             <div>
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 text-xs font-black uppercase tracking-wider mb-3">
-                <ShieldCheck className="w-4 h-4" /> Official Verified Directory
+              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 text-xs font-black uppercase tracking-wider mb-3">
+                <ShieldCheck className="w-4 h-4 text-cyan-400" /> Tamil Nadu & Environs Master Hub
               </div>
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-white">
-                Tamil Nadu Engineering Colleges
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-white leading-tight">
+                Colleges Discovery Hub
               </h1>
               <p className="text-sm sm:text-base text-slate-300 mt-2 max-w-3xl leading-relaxed">
-                Explore government, autonomous, and recognized engineering institutions across Tamil Nadu. Filter by TNEA cutoff, annual fees, specialized branches, and verified placement records.
+                Explore 200+ verified **Engineering**, **Medical & Healthcare (NEET)**, and **Arts, Science & Commerce** institutions across all 38 districts of Tamil Nadu with real cutoffs, verified photos, and salary metrics.
               </p>
             </div>
 
@@ -187,21 +326,55 @@ export const CollegesDirectoryPage: React.FC<CollegesDirectoryPageProps> = ({ on
                 <span className="text-[10px] font-bold text-slate-400 block uppercase">Matching Colleges</span>
               </div>
               <div className="px-3 text-center">
-                <span className="text-2xl font-black text-emerald-400">100%</span>
-                <span className="text-[10px] font-bold text-slate-400 block uppercase">Verified Data</span>
+                <span className="text-2xl font-black text-emerald-400">3 Streams</span>
+                <span className="text-[10px] font-bold text-slate-400 block uppercase">Engg / Med / Arts</span>
               </div>
             </div>
           </div>
 
+          {/* Stream Selector Tabs */}
+          <div className="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-3">
+            {STREAM_TABS.map((tab) => {
+              const Icon = tab.icon;
+              const isSelected = selectedStream === tab.id;
+              return (
+                <button
+                  key={tab.id}
+                  onClick={() => {
+                    setSelectedStream(tab.id as StreamCategory);
+                    setSelectedBranch('All');
+                  }}
+                  className={`p-3.5 rounded-2xl border-2 text-left transition-all duration-200 flex items-center gap-3 ${
+                    isSelected
+                      ? 'bg-blue-600/20 border-cyan-400 text-white shadow-lg shadow-cyan-500/10'
+                      : 'bg-slate-900/80 border-slate-800 text-slate-400 hover:text-slate-200 hover:border-slate-700'
+                  }`}
+                >
+                  <div className={`p-2 rounded-xl ${isSelected ? 'bg-blue-600 text-white' : 'bg-slate-800 text-slate-400'}`}>
+                    <Icon className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <span className="text-xs sm:text-sm font-black block leading-tight text-white">
+                      {tab.label}
+                    </span>
+                    <span className="text-[10px] font-semibold text-slate-400">
+                      {tab.countLabel}
+                    </span>
+                  </div>
+                </button>
+              );
+            })}
+          </div>
+
           {/* Search Bar Container */}
-          <div className="mt-8 relative">
+          <div className="mt-6 relative">
             <div className="relative flex items-center">
               <Search className="absolute left-4 w-5 h-5 text-cyan-400 pointer-events-none" />
               <input
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Search college name, short code, branch (CSE, AI/ML), city (Coimbatore, Chennai) or TNEA code (e.g. 0001, 2006)..."
+                placeholder="Search by college name, stream (Engineering, Medical, Arts), course (MBBS, B.Com, CSE), city (Coimbatore, Chennai) or code..."
                 className="w-full pl-12 pr-10 py-4 rounded-2xl bg-slate-900 border-2 border-slate-800 text-white placeholder-slate-400 focus:outline-none focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/20 text-sm sm:text-base font-medium transition-all shadow-xl"
               />
               {searchQuery && (
@@ -216,22 +389,23 @@ export const CollegesDirectoryPage: React.FC<CollegesDirectoryPageProps> = ({ on
 
             {/* Example Queries Suggestion */}
             <div className="flex flex-wrap items-center gap-2 mt-3 text-xs text-slate-400">
-              <span className="font-semibold text-slate-400">Quick Searches:</span>
+              <span className="font-semibold text-slate-400 text-[11px]">Quick Filters:</span>
               {[
-                'CEG Anna Univ',
-                'PSG Tech',
-                'SSN Chennai',
-                'CIT Coimbatore',
-                'TNEA Code 2006',
-                'CSE Coimbatore',
-                'AI & DS Chennai'
-              ].map((term) => (
+                { label: '⚙️ Engineering Colleges', query: 'Engineering' },
+                { label: '🩺 Medical Colleges (NEET)', query: 'Medical' },
+                { label: '🎨 Arts & Science Colleges', query: 'Arts' },
+                { label: 'Loyola & PSGCAS (B.Com)', query: 'B.Com' },
+                { label: 'MMC & CMC Vellore (MBBS)', query: 'MBBS' },
+                { label: 'PSG Tech & CEG Anna Univ', query: 'PSG Tech' },
+                { label: 'Coimbatore Hub', query: 'Coimbatore' },
+                { label: 'Chennai Hub', query: 'Chennai' }
+              ].map((item) => (
                 <button
-                  key={term}
-                  onClick={() => setSearchQuery(term)}
-                  className="px-2.5 py-1 rounded-lg bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-cyan-300 border border-slate-800 transition-colors text-[11px] font-medium"
+                  key={item.label}
+                  onClick={() => setSearchQuery(item.query)}
+                  className="px-2.5 py-1 rounded-lg bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-cyan-300 border border-slate-800 transition-colors text-[11px] font-medium flex items-center gap-1"
                 >
-                  {term}
+                  {item.label}
                 </button>
               ))}
             </div>
@@ -256,7 +430,7 @@ export const CollegesDirectoryPage: React.FC<CollegesDirectoryPageProps> = ({ on
             </button>
 
             <span className="text-xs font-bold text-slate-300">
-              Showing <strong className="text-white">{filteredColleges.length}</strong> institutions
+              Showing <strong className="text-white">{filteredColleges.length}</strong> {selectedStream !== 'All' ? `${selectedStream}` : ''} institutions
             </span>
 
             {hasActiveFilters && (
@@ -279,7 +453,7 @@ export const CollegesDirectoryPage: React.FC<CollegesDirectoryPageProps> = ({ on
                 onChange={(e) => setSortBy(e.target.value as any)}
                 className="bg-transparent text-white font-bold focus:outline-none cursor-pointer text-xs"
               >
-                <option value="cutoff" className="bg-slate-900 text-white">TNEA Cutoff (High → Low)</option>
+                <option value="cutoff" className="bg-slate-900 text-white">Cutoff / Merit (High → Low)</option>
                 <option value="fees" className="bg-slate-900 text-white">Tuition Fees (Low → High)</option>
                 <option value="placements" className="bg-slate-900 text-white">Highest Package (LPA)</option>
                 <option value="name" className="bg-slate-900 text-white">College Name (A → Z)</option>
@@ -327,7 +501,27 @@ export const CollegesDirectoryPage: React.FC<CollegesDirectoryPageProps> = ({ on
                 )}
               </div>
 
-              {/* 1. District Filter */}
+              {/* 1. Stream Selector */}
+              <div className="space-y-2">
+                <label className="text-xs font-black text-slate-300 uppercase tracking-wider block">
+                  Discipline / Stream
+                </label>
+                <select
+                  value={selectedStream}
+                  onChange={(e) => {
+                    setSelectedStream(e.target.value as StreamCategory);
+                    setSelectedBranch('All');
+                  }}
+                  className="w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-xs font-bold text-white focus:outline-none focus:border-cyan-500 cursor-pointer"
+                >
+                  <option value="All">All Disciplines (Engg, Med, Arts)</option>
+                  <option value="Engineering">⚙️ Engineering & Tech</option>
+                  <option value="Medical">🩺 Medical & Healthcare</option>
+                  <option value="Arts & Science">🎨 Arts, Science & Commerce</option>
+                </select>
+              </div>
+
+              {/* 2. District Filter */}
               <div className="space-y-2">
                 <label className="text-xs font-black text-slate-300 uppercase tracking-wider block">
                   District / Location
@@ -346,23 +540,23 @@ export const CollegesDirectoryPage: React.FC<CollegesDirectoryPageProps> = ({ on
                   <option value="Tiruchirappalli">Tiruchirappalli (Trichy)</option>
                   <option value="Vellore">Vellore</option>
                   <option value="Tiruppur">Tiruppur</option>
-                  <option value="Namakkal">Namakkal</option>
                   <option value="Thanjavur">Thanjavur</option>
                   <option value="Dindigul">Dindigul</option>
                   <option value="Kancheepuram">Kancheepuram</option>
                   <option value="Chengalpattu">Chengalpattu</option>
                   <option value="Tirunelveli">Tirunelveli</option>
                   <option value="Kanniyakumari">Kanniyakumari</option>
+                  <option value="Puducherry & Environs">Puducherry & Environs</option>
                 </select>
               </div>
 
-              {/* 2. Branch Filter */}
+              {/* 3. Branch / Course Filter */}
               <div className="space-y-2">
                 <label className="text-xs font-black text-slate-300 uppercase tracking-wider block">
-                  Engineering Branch
+                  {selectedStream === 'Medical' ? 'Specialization / Program' : selectedStream === 'Arts & Science' ? 'Degree / Major' : 'Branch / Specialization'}
                 </label>
                 <div className="space-y-1 max-h-48 overflow-y-auto pr-1 custom-scrollbar">
-                  {POPULAR_BRANCHES.map((branch) => (
+                  {activeBranchList.map((branch) => (
                     <button
                       key={branch}
                       onClick={() => setSelectedBranch(branch)}
@@ -372,14 +566,14 @@ export const CollegesDirectoryPage: React.FC<CollegesDirectoryPageProps> = ({ on
                           : 'text-slate-300 hover:bg-slate-800 hover:text-white'
                       }`}
                     >
-                      <span>{branch}</span>
-                      {selectedBranch === branch && <CheckCircle2 className="w-3.5 h-3.5" />}
+                      <span className="truncate">{branch}</span>
+                      {selectedBranch === branch && <CheckCircle2 className="w-3.5 h-3.5 shrink-0 ml-1" />}
                     </button>
                   ))}
                 </div>
               </div>
 
-              {/* 3. Tuition Fee Range */}
+              {/* 4. Tuition Fee Range */}
               <div className="space-y-2">
                 <label className="text-xs font-black text-slate-300 uppercase tracking-wider block">
                   Annual Tuition Fee
@@ -395,17 +589,17 @@ export const CollegesDirectoryPage: React.FC<CollegesDirectoryPageProps> = ({ on
                           : 'text-slate-300 hover:bg-slate-800 hover:text-white'
                       }`}
                     >
-                      <span>{fee.label}</span>
-                      {selectedFeeIndex === idx && <CheckCircle2 className="w-3.5 h-3.5" />}
+                      <span className="text-[11px]">{fee.label}</span>
+                      {selectedFeeIndex === idx && <CheckCircle2 className="w-3.5 h-3.5 shrink-0 ml-1" />}
                     </button>
                   ))}
                 </div>
               </div>
 
-              {/* 4. College Type */}
+              {/* 5. College Type */}
               <div className="space-y-2">
                 <label className="text-xs font-black text-slate-300 uppercase tracking-wider block">
-                  Institution Type
+                  Institution Category
                 </label>
                 <select
                   value={selectedType}
@@ -421,10 +615,10 @@ export const CollegesDirectoryPage: React.FC<CollegesDirectoryPageProps> = ({ on
               {/* Assistance Card */}
               <div className="bg-gradient-to-br from-blue-950 to-slate-950 p-4 rounded-2xl border border-cyan-500/30 text-xs">
                 <span className="font-black text-cyan-400 block mb-1 flex items-center gap-1.5">
-                  <Sparkles className="w-4 h-4" /> Need Cutoff Advice?
+                  <Sparkles className="w-4 h-4" /> Need Expert Guidance?
                 </span>
                 <p className="text-slate-300 text-[11px] leading-relaxed mb-3">
-                  Not sure which college fits your 12th PCM cutoff? Talk to our senior TNEA advisor.
+                  Get personalized strategy on TNEA cutoff, NEET medical seat matrix, or top Arts & Commerce admissions.
                 </p>
                 <button
                   onClick={onOpenBooking}
@@ -448,7 +642,7 @@ export const CollegesDirectoryPage: React.FC<CollegesDirectoryPageProps> = ({ on
                 </div>
                 <h3 className="text-xl font-black text-white">No Colleges Found</h3>
                 <p className="text-slate-400 text-sm max-w-md mx-auto">
-                  We couldn't find any institutions matching your selected combination of branch, location, or budget.
+                  We couldn't find any institutions matching your selected stream, branch, location, or budget filters.
                 </p>
                 <button
                   onClick={clearAllFilters}
@@ -465,6 +659,7 @@ export const CollegesDirectoryPage: React.FC<CollegesDirectoryPageProps> = ({ on
                 {filteredColleges.map((college) => {
                   const isSaved = savedCollegeIds.includes(college.id);
                   const isCompared = comparisonCollegeIds.includes(college.id);
+                  const streamColorClass = getStreamBadgeColor(college.stream);
 
                   return (
                     <div
@@ -472,10 +667,13 @@ export const CollegesDirectoryPage: React.FC<CollegesDirectoryPageProps> = ({ on
                       className="bg-slate-900 rounded-3xl border-2 border-slate-800 hover:border-cyan-500/50 transition-all duration-300 flex flex-col justify-between overflow-hidden group shadow-xl hover:shadow-cyan-500/10 hover:-translate-y-1"
                     >
                       {/* Card Image Banner */}
-                      <div className="relative h-44 w-full bg-slate-800 overflow-hidden">
+                      <div className="relative h-48 w-full bg-slate-800 overflow-hidden">
                         <img
                           src={college.image}
                           alt={college.name}
+                          onError={(e) => {
+                            e.currentTarget.src = getStreamFallbackImage(college.stream);
+                          }}
                           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                           loading="lazy"
                         />
@@ -483,9 +681,18 @@ export const CollegesDirectoryPage: React.FC<CollegesDirectoryPageProps> = ({ on
 
                         {/* Top Badges */}
                         <div className="absolute top-3 left-3 right-3 flex items-center justify-between">
-                          <span className="px-2.5 py-1 rounded-lg bg-slate-900/90 backdrop-blur-md text-[10px] font-black uppercase tracking-wider text-cyan-400 border border-slate-700">
-                            {college.tneaCode ? `TNEA: ${college.tneaCode}` : 'University Entrance'}
-                          </span>
+                          <div className="flex items-center gap-1.5">
+                            <span className={`px-2.5 py-1 rounded-lg text-[10px] font-black uppercase tracking-wider border backdrop-blur-md flex items-center gap-1 ${streamColorClass}`}>
+                              {getStreamIcon(college.stream)}
+                              <span>{college.stream || 'Engineering'}</span>
+                            </span>
+
+                            {college.tneaCode && (
+                              <span className="px-2 py-1 rounded-lg bg-slate-900/90 backdrop-blur-md text-[10px] font-black uppercase tracking-wider text-cyan-300 border border-slate-700">
+                                TNEA: {college.tneaCode}
+                              </span>
+                            )}
+                          </div>
 
                           <div className="flex items-center gap-1.5">
                             {/* Save to Shortlist Button */}
@@ -535,10 +742,10 @@ export const CollegesDirectoryPage: React.FC<CollegesDirectoryPageProps> = ({ on
                       <div className="p-5 flex-1 flex flex-col justify-between space-y-4">
                         <div>
                           <div className="flex items-center gap-2 mb-1.5">
-                            <span className="text-[10px] font-extrabold uppercase text-slate-400">
+                            <span className="text-[10px] font-extrabold uppercase text-slate-400 truncate max-w-[200px]">
                               {college.institutionType}
                             </span>
-                            <span className="inline-flex items-center gap-0.5 text-[10px] text-emerald-400 font-bold">
+                            <span className="inline-flex items-center gap-0.5 text-[10px] text-emerald-400 font-bold shrink-0">
                               <ShieldCheck className="w-3 h-3" /> Verified
                             </span>
                           </div>
@@ -553,16 +760,24 @@ export const CollegesDirectoryPage: React.FC<CollegesDirectoryPageProps> = ({ on
                           {/* Key Highlights Metrics */}
                           <div className="grid grid-cols-2 gap-2 mt-4 text-xs bg-slate-950 p-3 rounded-2xl border border-slate-800">
                             <div>
-                              <span className="text-[10px] uppercase font-bold text-slate-400 block">General Cutoff</span>
-                              <span className="font-black text-cyan-400">{college.tneaCutoffGeneral || 'Entrance / Merit'}</span>
+                              <span className="text-[10px] uppercase font-bold text-slate-400 block">
+                                {college.stream === 'Medical' ? 'NEET UG Cutoff' : college.stream === 'Arts & Science' ? '12th Board Cutoff' : 'TNEA Cutoff'}
+                              </span>
+                              <span className="font-black text-cyan-400 text-xs truncate block">
+                                {college.stream === 'Medical' 
+                                  ? (college.neetCutoffGeneral || 'NEET Merit') 
+                                  : college.stream === 'Arts & Science' 
+                                  ? (college.meritCutoffPercentage || '85% – 98%') 
+                                  : (college.tneaCutoffGeneral || 'Entrance / Merit')}
+                              </span>
                             </div>
                             <div>
-                              <span className="text-[10px] uppercase font-bold text-slate-400 block">Highest Package</span>
-                              <span className="font-black text-emerald-400">{college.placements.highestPackage}</span>
+                              <span className="text-[10px] uppercase font-bold text-slate-400 block">Top Placement / Package</span>
+                              <span className="font-black text-emerald-400 text-xs truncate block">{college.placements.highestPackage}</span>
                             </div>
                             <div className="col-span-2 pt-1 border-t border-slate-900 flex items-center justify-between">
                               <span className="text-[10px] uppercase font-bold text-slate-400">Annual Tuition:</span>
-                              <span className="font-bold text-white text-[11px]">{college.approxFeesPerYear.split('(')[0]}</span>
+                              <span className="font-bold text-white text-[11px] truncate">{college.approxFeesPerYear.split('(')[0]}</span>
                             </div>
                           </div>
 
@@ -571,7 +786,7 @@ export const CollegesDirectoryPage: React.FC<CollegesDirectoryPageProps> = ({ on
                             {college.popularBranches.slice(0, 3).map((branch, i) => (
                               <span
                                 key={i}
-                                className="text-[10px] px-2 py-0.5 rounded-md bg-slate-800 text-slate-300 font-bold"
+                                className="text-[10px] px-2 py-0.5 rounded-md bg-slate-800 text-slate-300 font-bold truncate max-w-[150px]"
                               >
                                 {branch}
                               </span>
@@ -620,11 +835,11 @@ export const CollegesDirectoryPage: React.FC<CollegesDirectoryPageProps> = ({ on
                   <table className="w-full text-left text-xs">
                     <thead className="bg-slate-950 text-slate-400 uppercase font-black tracking-wider border-b border-slate-800 text-[10px]">
                       <tr>
-                        <th className="p-4">College & Location</th>
-                        <th className="p-4">TNEA Code</th>
-                        <th className="p-4">Cutoff Range</th>
+                        <th className="p-4">Stream & College</th>
+                        <th className="p-4">Code / Type</th>
+                        <th className="p-4">Cutoff Score</th>
                         <th className="p-4">Tuition Fee</th>
-                        <th className="p-4">Highest Package</th>
+                        <th className="p-4">Top Package</th>
                         <th className="p-4 text-right">Actions</th>
                       </tr>
                     </thead>
@@ -632,10 +847,16 @@ export const CollegesDirectoryPage: React.FC<CollegesDirectoryPageProps> = ({ on
                       {filteredColleges.map((college) => {
                         const isSaved = savedCollegeIds.includes(college.id);
                         const isCompared = comparisonCollegeIds.includes(college.id);
+                        const streamColorClass = getStreamBadgeColor(college.stream);
 
                         return (
                           <tr key={college.id} className="hover:bg-slate-800/40 transition-colors">
                             <td className="p-4 max-w-xs">
+                              <div className="flex items-center gap-2 mb-1">
+                                <span className={`px-2 py-0.5 rounded text-[9px] font-black uppercase border ${streamColorClass}`}>
+                                  {college.stream || 'Engineering'}
+                                </span>
+                              </div>
                               <button
                                 onClick={() => viewCollegeDetail(college.id)}
                                 className="font-black text-white hover:text-cyan-400 transition-colors text-left block"
@@ -647,10 +868,14 @@ export const CollegesDirectoryPage: React.FC<CollegesDirectoryPageProps> = ({ on
                               </span>
                             </td>
                             <td className="p-4 font-mono font-bold text-cyan-400">
-                              {college.tneaCode || 'N/A'}
+                              {college.tneaCode ? `TNEA: ${college.tneaCode}` : college.institutionType}
                             </td>
                             <td className="p-4 font-bold text-white">
-                              {college.tneaCutoffGeneral || 'Merit / Entrance'}
+                              {college.stream === 'Medical' 
+                                ? (college.neetCutoffGeneral || 'NEET Merit') 
+                                : college.stream === 'Arts & Science' 
+                                ? (college.meritCutoffPercentage || '85% – 98%') 
+                                : (college.tneaCutoffGeneral || 'Merit / Entrance')}
                             </td>
                             <td className="p-4 text-slate-300">
                               {college.approxFeesPerYear.split('(')[0]}
@@ -717,6 +942,24 @@ export const CollegesDirectoryPage: React.FC<CollegesDirectoryPageProps> = ({ on
               </button>
             </div>
 
+            {/* Stream */}
+            <div className="space-y-2">
+              <label className="text-xs font-black text-slate-300 uppercase block">Stream / Discipline</label>
+              <select
+                value={selectedStream}
+                onChange={(e) => {
+                  setSelectedStream(e.target.value as StreamCategory);
+                  setSelectedBranch('All');
+                }}
+                className="w-full px-3 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-xs font-bold text-white"
+              >
+                <option value="All">All Disciplines</option>
+                <option value="Engineering">⚙️ Engineering & Tech</option>
+                <option value="Medical">🩺 Medical & Healthcare</option>
+                <option value="Arts & Science">🎨 Arts, Science & Commerce</option>
+              </select>
+            </div>
+
             {/* District */}
             <div className="space-y-2">
               <label className="text-xs font-black text-slate-300 uppercase block">District</label>
@@ -733,18 +976,21 @@ export const CollegesDirectoryPage: React.FC<CollegesDirectoryPageProps> = ({ on
                 <option value="Erode">Erode</option>
                 <option value="Tiruchirappalli">Tiruchirappalli</option>
                 <option value="Vellore">Vellore</option>
+                <option value="Thanjavur">Thanjavur</option>
+                <option value="Tirunelveli">Tirunelveli</option>
+                <option value="Kanniyakumari">Kanniyakumari</option>
               </select>
             </div>
 
             {/* Branch */}
             <div className="space-y-2">
-              <label className="text-xs font-black text-slate-300 uppercase block">Branch</label>
+              <label className="text-xs font-black text-slate-300 uppercase block">Course / Branch</label>
               <select
                 value={selectedBranch}
                 onChange={(e) => setSelectedBranch(e.target.value)}
                 className="w-full px-3 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-xs font-bold text-white"
               >
-                {POPULAR_BRANCHES.map((b) => (
+                {activeBranchList.map((b) => (
                   <option key={b} value={b}>{b}</option>
                 ))}
               </select>

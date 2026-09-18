@@ -1,42 +1,5 @@
-export interface TNCollege {
-  id: string;
-  name: string;
-  shortName: string;
-  tneaCode?: string;
-  institutionType: 'Government / University Campus' | 'Government Aided Autonomous' | 'Deemed-to-be University' | 'Self-Financing Autonomous' | 'Affiliated Engineering College';
-  category: 'Top Tier Autonomous' | 'Deemed University' | 'Government Premier' | 'Coimbatore Landmark' | 'Chennai Landmark' | 'Regional Premier';
-  city: string;
-  district: string;
-  zone: 'Chennai & Northern TN' | 'Coimbatore & Western TN' | 'Central Tamil Nadu' | 'Southern Tamil Nadu';
-  establishedYear: number;
-  nirfRank?: string;
-  naacGrade?: string;
-  nbaAccredited?: boolean;
-  image: string;
-  tneaCutoffGeneral?: string; // e.g. "195.5 – 199.5" or "185.0 – 192.0"
-  admissionRoutes: string[]; // e.g. ["TNEA Single Window Counselling", "Management Quota", "AEEE", "VITEEE"]
-  entranceExams: string[]; // ["TNEA", "AEEE", "VITEEE", "SRMJEEE", "JEE Main"]
-  approxFeesPerYear: string;
-  tuitionValue: number; // in INR
-  placements: {
-    highestPackage: string;
-    averagePackage: string;
-    medianPackage?: string;
-    placementPercentage: string;
-    topRecruiters: string[];
-  };
-  popularBranches: string[];
-  allBranches: string[];
-  campuses?: string[];
-  hostelAvailable: boolean;
-  hostelFees?: string;
-  officialWebsite: string;
-  overview: string;
-  isFeatured?: boolean;
-  isCoimbatoreHub?: boolean;
-  verificationStatus?: 'VERIFIED' | 'UPDATED' | string;
-  lastUpdated: string;
-}
+import { TNCollege } from '../types';
+export type { TNCollege };
 
 export const TN_DISTRICTS = [
   'Ariyalur', 'Chengalpattu', 'Chennai', 'Coimbatore', 'Cuddalore',

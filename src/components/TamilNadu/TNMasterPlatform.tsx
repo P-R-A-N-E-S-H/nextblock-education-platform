@@ -14,6 +14,7 @@ import {
   Compass
 } from 'lucide-react';
 import { allTNCollegesData, TNCollege } from '../../data/indexTNColleges';
+import { getStreamFallbackImage } from '../../utils/helpers';
 import { TNFeaturedColleges } from './TNFeaturedColleges';
 import { TNPlacementSalaryArena } from './TNPlacementSalaryArena';
 import { DistrictExplorer } from './DistrictExplorer';
@@ -26,6 +27,7 @@ interface TNMasterPlatformProps {
 }
 
 export const TNMasterPlatform: React.FC<TNMasterPlatformProps> = ({ onOpenBooking }) => {
+  const [selectedStream, setSelectedStream] = useState<'All' | 'Engineering' | 'Medical' | 'Arts & Science'>('All');
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedDistrict, setSelectedDistrict] = useState('All');
   const [selectedBranch, setSelectedBranch] = useState('All');
@@ -37,51 +39,89 @@ export const TNMasterPlatform: React.FC<TNMasterPlatformProps> = ({ onOpenBookin
   const [comparisonColleges, setComparisonColleges] = useState<TNCollege[]>([]);
   const [isComparisonOpen, setIsComparisonOpen] = useState(false);
 
-  const branches = [
-    'All',
-    'CSE',
-    'AI & ML',
-    'AI & Data Science',
-    'Information Technology',
-    'Cyber Security',
-    'Data Science',
-    'ECE',
-    'EEE',
-    'EIE',
-    'VLSI',
-    'Mechanical',
-    'Civil',
-    'Chemical',
-    'Automobile',
-    'Aerospace',
-    'Aeronautical',
-    'Mechatronics',
-    'Robotics & Automation',
-    'Biomedical',
-    'Biotechnology',
-    'Agricultural Engineering',
-    'Food Technology',
-    'Textile Technology',
-    'Industrial Engineering'
-  ];
+  const branches = useMemo(() => {
+    if (selectedStream === 'Engineering') {
+      return [
+        'All',
+        'CSE',
+        'AI & Data Science',
+        'AI & ML',
+        'Information Technology',
+        'Cyber Security',
+        'ECE',
+        'EEE',
+        'Mechanical',
+        'Robotics & Automation',
+        'Biotechnology',
+        'Bio-Medical',
+        'Civil'
+      ];
+    } else if (selectedStream === 'Medical') {
+      return [
+        'All',
+        'MBBS',
+        'BDS (Dental)',
+        'B.Pharm',
+        'Pharm.D',
+        'B.Sc Nursing',
+        'Allied Health Sciences',
+        'MD General Medicine',
+        'MS General Surgery',
+        'Radiology & Imaging',
+        'BPT (Physiotherapy)'
+      ];
+    } else if (selectedStream === 'Arts & Science') {
+      return [
+        'All',
+        'B.Com (General / PA / CS)',
+        'B.Sc Computer Science',
+        'BCA',
+        'BBA',
+        'B.Sc Data Science',
+        'B.Sc Mathematics',
+        'B.Sc Physics',
+        'B.Sc Biotechnology',
+        'B.Sc Psychology',
+        'B.A Economics',
+        'B.A English Literature'
+      ];
+    }
+    return [
+      'All',
+      'CSE / IT / AI',
+      'MBBS / Medical',
+      'B.Com / Commerce',
+      'BDS (Dental)',
+      'B.Sc Computer Science / BCA',
+      'B.Pharm / Pharmacy',
+      'B.Sc Nursing',
+      'BBA / Management',
+      'ECE / Electronics',
+      'Mechanical / Robotics',
+      'Biotechnology'
+    ];
+  }, [selectedStream]);
 
   const exams = [
     'All',
     'TNEA',
+    'NEET-UG',
+    'Merit Based',
+    'JEE Main',
     'AEEE',
     'VITEEE',
-    'SRMJEEE',
-    'JEE Main',
-    'KEE',
-    'SAEEE'
+    'SRMJEEE'
   ];
 
   const types = [
     'All',
     'Government / University Campus',
+    'Government Medical College',
+    'Government Arts College',
     'Government Aided Autonomous',
     'Deemed-to-be University',
     'Self-Financing Autonomous',
+    'Private Medical College',
     'Affiliated Engineering College'
   ];
 
@@ -105,16 +145,38 @@ export const TNMasterPlatform: React.FC<TNMasterPlatformProps> = ({ onOpenBookin
   // Filtered dataset
   const filteredColleges = useMemo(() => {
     return allTNCollegesData.filter((c) => {
-      // Search query
-      const matchesSearch =
-        c.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        c.shortName.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        c.city.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        c.district.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        (c.tneaCode && c.tneaCode.includes(searchQuery)) ||
-        c.popularBranches.some((b) => b.toLowerCase().includes(searchQuery.toLowerCase()));
+      const colStream = (c.stream || '').toLowerCase();
+      const colStreams = (c.streams || []).map(s => s.toLowerCase());
 
-      if (!matchesSearch) return false;
+      // 0. Stream filter
+      if (selectedStream !== 'All') {
+        const target = selectedStream.toLowerCase();
+        const matchesStream = colStream.includes(target) || colStreams.some(s => s.includes(target));
+        if (!matchesStream) return false;
+      }
+
+      // Search query
+      if (searchQuery.trim()) {
+        const q = searchQuery.toLowerCase().trim();
+        if (q === 'engineering' || q === 'engg' || q === 'btech') {
+          if (!colStream.includes('engineering') && !colStreams.some(s => s.includes('engineering'))) return false;
+        } else if (q === 'medical' || q === 'mbbs' || q === 'doctor' || q === 'neet') {
+          if (!colStream.includes('medical') && !colStreams.some(s => s.includes('medical'))) return false;
+        } else if (q === 'arts' || q === 'science' || q === 'commerce' || q === 'bcom') {
+          if (!colStream.includes('arts') && !colStream.includes('science') && !colStreams.some(s => s.includes('arts') || s.includes('science') || s.includes('commerce'))) return false;
+        } else {
+          const matchesSearch =
+            c.name.toLowerCase().includes(q) ||
+            c.shortName.toLowerCase().includes(q) ||
+            c.city.toLowerCase().includes(q) ||
+            c.district.toLowerCase().includes(q) ||
+            (c.tneaCode && c.tneaCode.includes(q)) ||
+            c.popularBranches.some((b) => b.toLowerCase().includes(q)) ||
+            c.allBranches.some((b) => b.toLowerCase().includes(q));
+
+          if (!matchesSearch) return false;
+        }
+      }
 
       // District filter
       if (selectedDistrict !== 'All' && c.district.toLowerCase() !== selectedDistrict.toLowerCase()) {
@@ -122,25 +184,26 @@ export const TNMasterPlatform: React.FC<TNMasterPlatformProps> = ({ onOpenBookin
       }
 
       // Branch filter
-      if (selectedBranch !== 'All' && !c.allBranches.some((b) => b.toLowerCase().includes(selectedBranch.toLowerCase()))) {
+      if (selectedBranch !== 'All' && !c.allBranches.some((b) => b.toLowerCase().includes(selectedBranch.toLowerCase())) && !c.popularBranches.some((b) => b.toLowerCase().includes(selectedBranch.toLowerCase()))) {
         return false;
       }
 
       // Exam filter
-      if (selectedExam !== 'All' && !c.entranceExams.includes(selectedExam)) {
+      if (selectedExam !== 'All' && !c.entranceExams.some(ex => ex.toLowerCase().includes(selectedExam.toLowerCase()))) {
         return false;
       }
 
       // Type filter
-      if (selectedType !== 'All' && c.institutionType !== selectedType) {
+      if (selectedType !== 'All' && !c.institutionType.toLowerCase().includes(selectedType.toLowerCase())) {
         return false;
       }
 
       return true;
     });
-  }, [searchQuery, selectedDistrict, selectedBranch, selectedExam, selectedType]);
+  }, [selectedStream, searchQuery, selectedDistrict, selectedBranch, selectedExam, selectedType]);
 
   const resetFilters = () => {
+    setSelectedStream('All');
     setSearchQuery('');
     setSelectedDistrict('All');
     setSelectedBranch('All');
@@ -216,7 +279,7 @@ export const TNMasterPlatform: React.FC<TNMasterPlatformProps> = ({ onOpenBookin
                 MASTER COLLEGE DIRECTORY
               </h3>
               <p className="text-xs text-slate-600 font-semibold mt-0.5">
-                Filter by Branch, District, TNEA Cutoff & Accreditation
+                Explore Engineering, Medical & Healthcare, and Arts & Science across Tamil Nadu
               </p>
             </div>
 
@@ -233,6 +296,31 @@ export const TNMasterPlatform: React.FC<TNMasterPlatformProps> = ({ onOpenBookin
             </div>
           </div>
 
+          {/* Stream Selector Buttons */}
+          <div className="flex flex-wrap items-center gap-2 mb-6">
+            {[
+              { id: 'All', label: 'All Disciplines (200+)' },
+              { id: 'Engineering', label: '⚙️ Engineering & Tech' },
+              { id: 'Medical', label: '🩺 Medical & Healthcare (NEET)' },
+              { id: 'Arts & Science', label: '🎨 Arts, Science & Commerce' }
+            ].map((tab) => (
+              <button
+                key={tab.id}
+                onClick={() => {
+                  setSelectedStream(tab.id as any);
+                  setSelectedBranch('All');
+                }}
+                className={`px-4 py-2 rounded-xl text-xs font-black transition-all ${
+                  selectedStream === tab.id
+                    ? 'bg-blue-600 text-white shadow-md shadow-blue-500/20 scale-105'
+                    : 'bg-slate-100 text-slate-700 hover:bg-slate-200 border border-slate-300'
+                }`}
+              >
+                {tab.label}
+              </button>
+            ))}
+          </div>
+
           {/* Search and Filters Bar */}
           <div className="bg-slate-50 rounded-3xl p-6 border-2 border-slate-200 shadow-sm mb-8">
             
@@ -243,7 +331,7 @@ export const TNMasterPlatform: React.FC<TNMasterPlatformProps> = ({ onOpenBookin
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Search by college name, short code (PSG, SSN, CIT, KCT), TNEA code, district, or branch..."
+                placeholder="Search by college name, stream (Engineering, Medical, Arts), course (MBBS, B.Com, CSE), TNEA code..."
                 className="w-full pl-12 pr-10 py-3.5 rounded-2xl bg-white border-2 border-slate-300 text-xs font-bold text-slate-950 placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-600"
               />
               {searchQuery && (
@@ -262,7 +350,7 @@ export const TNMasterPlatform: React.FC<TNMasterPlatformProps> = ({ onOpenBookin
               {/* Branch Filter */}
               <div>
                 <label className="text-[11px] font-black uppercase tracking-wider text-slate-700 mb-1.5 block">
-                  Engineering Branch
+                  Course / Program
                 </label>
                 <select
                   value={selectedBranch}
@@ -270,7 +358,7 @@ export const TNMasterPlatform: React.FC<TNMasterPlatformProps> = ({ onOpenBookin
                   className="w-full px-3 py-2.5 rounded-xl bg-white border-2 border-slate-300 text-xs font-bold text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-600"
                 >
                   {branches.map((b) => (
-                    <option key={b} value={b}>{b === 'All' ? 'All Engineering Branches' : b}</option>
+                    <option key={b} value={b}>{b === 'All' ? 'All Courses & Branches' : b}</option>
                   ))}
                 </select>
               </div>
@@ -325,6 +413,7 @@ export const TNMasterPlatform: React.FC<TNMasterPlatformProps> = ({ onOpenBookin
                   <option value="Madurai">Madurai</option>
                   <option value="Salem">Salem</option>
                   <option value="Erode">Erode</option>
+                  <option value="Tiruchirappalli">Tiruchirappalli</option>
                   <option value="Thanjavur">Thanjavur</option>
                   <option value="Vellore">Vellore</option>
                   <option value="Namakkal">Namakkal</option>
@@ -377,13 +466,13 @@ export const TNMasterPlatform: React.FC<TNMasterPlatformProps> = ({ onOpenBookin
                   >
                     <div>
                       {/* Image Banner Header */}
-                      <div className="relative h-44 w-full overflow-hidden bg-slate-950">
+                      <div className="relative h-48 w-full overflow-hidden bg-slate-950">
                         <img
                           src={college.image}
                           alt={college.name}
                           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                           onError={(e) => {
-                            (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=800&q=80';
+                            (e.target as HTMLImageElement).src = getStreamFallbackImage(college.stream);
                           }}
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent" />
@@ -391,14 +480,14 @@ export const TNMasterPlatform: React.FC<TNMasterPlatformProps> = ({ onOpenBookin
                         {/* Top Badges & Compare Toggle */}
                         <div className="absolute top-3 left-3 right-3 flex items-center justify-between z-10">
                           <div className="flex items-center gap-1.5">
+                            <span className="text-[10px] font-black px-2 py-0.5 rounded bg-blue-600 text-white shadow-xs">
+                              {college.stream || 'Engineering'}
+                            </span>
                             {college.tneaCode && (
-                              <span className="text-[10px] font-black px-2 py-0.5 rounded bg-blue-600 text-white shadow-xs">
+                              <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-slate-950/80 text-cyan-300 border border-slate-700">
                                 TNEA {college.tneaCode}
                               </span>
                             )}
-                            <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-slate-950/80 text-cyan-300 border border-slate-700">
-                              {college.institutionType.split(' ')[0]}
-                            </span>
                           </div>
 
                           <button
@@ -433,8 +522,16 @@ export const TNMasterPlatform: React.FC<TNMasterPlatformProps> = ({ onOpenBookin
                         {/* Metrics 2-Col */}
                         <div className="grid grid-cols-2 gap-2 text-xs">
                           <div className="bg-slate-50 p-2.5 rounded-xl border border-slate-200">
-                            <span className="text-slate-500 text-[10px] uppercase font-black block">TNEA Cutoff</span>
-                            <span className="font-black text-blue-700 block truncate">{college.tneaCutoffGeneral || 'Check Exam'}</span>
+                            <span className="text-slate-500 text-[10px] uppercase font-black block">
+                              {college.stream === 'Medical' ? 'NEET Cutoff' : college.stream === 'Arts & Science' ? 'Board Cutoff' : 'TNEA Cutoff'}
+                            </span>
+                            <span className="font-black text-blue-700 block truncate">
+                              {college.stream === 'Medical' 
+                                ? (college.neetCutoffGeneral || 'NEET Merit') 
+                                : college.stream === 'Arts & Science' 
+                                ? (college.meritCutoffPercentage || '85% – 98%') 
+                                : (college.tneaCutoffGeneral || 'Check Exam')}
+                            </span>
                           </div>
 
                           <div className="bg-slate-50 p-2.5 rounded-xl border border-slate-200">
@@ -442,6 +539,7 @@ export const TNMasterPlatform: React.FC<TNMasterPlatformProps> = ({ onOpenBookin
                             <span className="font-black text-emerald-700 block">{college.placements.highestPackage}</span>
                           </div>
                         </div>
+
 
                         {/* Popular branches */}
                         <div>
